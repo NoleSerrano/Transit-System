@@ -111,7 +111,7 @@ public class MainMenu extends JDialog {
 		});
 		driverButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		driverButton.setBackground(SystemColor.controlHighlight);
-		driverButton.setBounds(180, 80, 140, 30);
+		driverButton.setBounds(230, 80, 190, 30);
 		driverButton.setFocusPainted(false);
 		contentPanel.add(driverButton);
 		
@@ -130,6 +130,50 @@ public class MainMenu extends JDialog {
 		
 		JMenuItem displayDr = new JMenuItem("Display");
 		driverPM.add(displayDr);
+		
+		JButton tripOfferingButton = new JButton("Trip Offering");
+		tripOfferingButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tripOfferingButton.setFocusPainted(false);
+		tripOfferingButton.setBackground(SystemColor.controlHighlight);
+		tripOfferingButton.setBounds(30, 80, 190, 30);
+		contentPanel.add(tripOfferingButton);
+		
+		JPopupMenu tripOfferingPM = new JPopupMenu();
+		addPopup(tripOfferingButton, tripOfferingPM);
+		
+		JMenuItem addTO = new JMenuItem("Add");
+		tripOfferingPM.add(addTO);
+		
+		JMenuItem deleteTO = new JMenuItem("Delete");
+		tripOfferingPM.add(deleteTO);
+		
+		JMenuItem updateTO = new JMenuItem("Update");
+		tripOfferingPM.add(updateTO);
+		
+		JMenuItem displayTO = new JMenuItem("Display");
+		tripOfferingPM.add(displayTO);
+		
+		JButton busButton = new JButton("Bus");
+		busButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		busButton.setFocusPainted(false);
+		busButton.setBackground(SystemColor.controlHighlight);
+		busButton.setBounds(430, 80, 190, 30);
+		contentPanel.add(busButton);
+		
+		JPopupMenu busPM = new JPopupMenu();
+		addPopup(busButton, busPM);
+		
+		JMenuItem addBu = new JMenuItem("Add");
+		busPM.add(addBu);
+		
+		JMenuItem deleteBu = new JMenuItem("Delete");
+		busPM.add(deleteBu);
+		
+		JMenuItem updateBu = new JMenuItem("Update");
+		busPM.add(updateBu);
+		
+		JMenuItem displayBu = new JMenuItem("Display");
+		busPM.add(displayBu);
 				
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {

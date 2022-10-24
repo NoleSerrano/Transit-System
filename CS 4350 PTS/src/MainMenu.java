@@ -48,8 +48,10 @@ public class MainMenu extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		setResizable(false);
+		contentPane.setBackground(new Color(246,249,250));
 		contentPane.setLayout(null);
-		
+
 		JLabel titleLabel = new JLabel("Transit System");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -130,6 +132,10 @@ public class MainMenu extends JFrame {
 		driverPM.add(displayDr);
 
 		JButton tripOfferingButton = new JButton("Trip Offering");
+		tripOfferingButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		tripOfferingButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tripOfferingButton.setFocusPainted(false);
 		tripOfferingButton.setBackground(SystemColor.controlHighlight);
@@ -184,8 +190,31 @@ public class MainMenu extends JFrame {
 		JMenuItem displayBu = new JMenuItem("Display");
 		displayBu.setBackground(Color.WHITE);
 		busPM.add(displayBu);
+
+		JPanel redPanel = new JPanel();
+		redPanel.setBackground(Color.RED);
+		redPanel.setBounds(30, 121, 590, 270);
+		contentPane.add(redPanel);
+
+		JPanel yellowPanel = new JPanel();
+		yellowPanel.setBackground(Color.YELLOW);
+		yellowPanel.setBounds(30, 121, 590, 270);
+		contentPane.add(yellowPanel);
+
+		JButton btnNewButton = new JButton("Swap Panels");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				redPanel.setVisible(false);
+				yellowPanel.setVisible(true);
+			}
+		});
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnNewButton.setBackground(Color.DARK_GRAY);
+		btnNewButton.setBounds(430, 402, 190, 32);
+		contentPane.add(btnNewButton);
 	}
-	
+
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

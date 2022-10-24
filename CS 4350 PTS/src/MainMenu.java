@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
+import java.awt.Color;
 
 public class MainMenu extends JFrame {
 
@@ -42,7 +44,7 @@ public class MainMenu extends JFrame {
 	 */
 	public MainMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 710, 300);
+		setBounds(100, 100, 666, 484);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -106,19 +108,25 @@ public class MainMenu extends JFrame {
 		contentPane.add(driverButton);
 
 		JPopupMenu driverPM = new JPopupMenu();
+		driverPM.setBackground(Color.WHITE);
+		driverPM.setPopupSize(new Dimension(190, 90));
 		driverPM.setLabel("");
 		addPopup(driverButton, driverPM);
 
 		JMenuItem addDr = new JMenuItem("Add");
+		addDr.setBackground(Color.WHITE);
 		driverPM.add(addDr);
 
 		JMenuItem deleteDr = new JMenuItem("Delete");
+		deleteDr.setBackground(Color.WHITE);
 		driverPM.add(deleteDr);
 
 		JMenuItem updateDr = new JMenuItem("Update");
+		updateDr.setBackground(Color.WHITE);
 		driverPM.add(updateDr);
 
 		JMenuItem displayDr = new JMenuItem("Display");
+		displayDr.setBackground(Color.WHITE);
 		driverPM.add(displayDr);
 
 		JButton tripOfferingButton = new JButton("Trip Offering");
@@ -129,18 +137,24 @@ public class MainMenu extends JFrame {
 		contentPane.add(tripOfferingButton);
 
 		JPopupMenu tripOfferingPM = new JPopupMenu();
+		tripOfferingPM.setBackground(Color.WHITE);
+		tripOfferingPM.setPopupSize(new Dimension(190, 90));
 		addPopup(tripOfferingButton, tripOfferingPM);
 
 		JMenuItem addTO = new JMenuItem("Add");
+		addTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(addTO);
 
 		JMenuItem deleteTO = new JMenuItem("Delete");
+		deleteTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(deleteTO);
 
 		JMenuItem updateTO = new JMenuItem("Update");
+		updateTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(updateTO);
 
 		JMenuItem displayTO = new JMenuItem("Display");
+		displayTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(displayTO);
 
 		JButton busButton = new JButton("Bus");
@@ -151,18 +165,24 @@ public class MainMenu extends JFrame {
 		contentPane.add(busButton);
 
 		JPopupMenu busPM = new JPopupMenu();
+		busPM.setBackground(Color.WHITE);
+		busPM.setPopupSize(new Dimension(190, 90));
 		addPopup(busButton, busPM);
 
 		JMenuItem addBu = new JMenuItem("Add");
+		addBu.setBackground(Color.WHITE);
 		busPM.add(addBu);
 
 		JMenuItem deleteBu = new JMenuItem("Delete");
+		deleteBu.setBackground(Color.WHITE);
 		busPM.add(deleteBu);
 
 		JMenuItem updateBu = new JMenuItem("Update");
+		updateBu.setBackground(Color.WHITE);
 		busPM.add(updateBu);
 
 		JMenuItem displayBu = new JMenuItem("Display");
+		displayBu.setBackground(Color.WHITE);
 		busPM.add(displayBu);
 	}
 	

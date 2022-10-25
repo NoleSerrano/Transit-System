@@ -58,7 +58,7 @@ public class WeeklySchedule extends JDialog {
 		
 		driverIDTextField = new JTextField();
 		driverIDTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		driverIDTextField.setBounds(10, 60, 150, 25);
+		driverIDTextField.setBounds(10, 60, 200, 25);
 		contentPanel.add(driverIDTextField);
 		driverIDTextField.setColumns(10);
 		
@@ -70,7 +70,7 @@ public class WeeklySchedule extends JDialog {
 		dateTextField = new JTextField();
 		dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		dateTextField.setColumns(10);
-		dateTextField.setBounds(10, 110, 150, 25);
+		dateTextField.setBounds(10, 110, 200, 25);
 		contentPanel.add(dateTextField);
 		
 		JButton displayButton = new JButton("Display");

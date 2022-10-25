@@ -59,7 +59,7 @@ public class DisplaySchedules extends JDialog {
 		
 		startLocationNameTextField = new JTextField();
 		startLocationNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		startLocationNameTextField.setBounds(10, 60, 150, 25);
+		startLocationNameTextField.setBounds(10, 60, 200, 25);
 		contentPanel.add(startLocationNameTextField);
 		startLocationNameTextField.setColumns(10);
 		
@@ -71,7 +71,7 @@ public class DisplaySchedules extends JDialog {
 		destinationNameTextField = new JTextField();
 		destinationNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		destinationNameTextField.setColumns(10);
-		destinationNameTextField.setBounds(10, 110, 150, 25);
+		destinationNameTextField.setBounds(10, 110, 200, 25);
 		contentPanel.add(destinationNameTextField);
 		
 		JLabel dateLabel = new JLabel("Date (YYYY-MM-DD)");
@@ -82,7 +82,7 @@ public class DisplaySchedules extends JDialog {
 		dateTextField = new JTextField();
 		dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		dateTextField.setColumns(10);
-		dateTextField.setBounds(10, 160, 150, 25);
+		dateTextField.setBounds(10, 160, 200, 25);
 		contentPanel.add(dateTextField);
 		
 		JButton displayButton = new JButton("Display");

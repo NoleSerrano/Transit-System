@@ -58,7 +58,7 @@ public class RecordData extends JDialog {
 
 		JLabel titleLabel = new JLabel("Record Data of Trip Offering");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		titleLabel.setBounds(10, 11, 310, 17);
 		contentPanel.add(titleLabel);
 		

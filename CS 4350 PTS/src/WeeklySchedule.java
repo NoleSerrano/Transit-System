@@ -14,11 +14,10 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DisplaySchedules extends JDialog {
+public class WeeklySchedule extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField startLocationNameTextField;
-	private JTextField destinationNameTextField;
+	private JTextField driverIDTextField;
 	private JTextField dateTextField;
 
 	/**
@@ -26,7 +25,7 @@ public class DisplaySchedules extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DisplaySchedules dialog = new DisplaySchedules();
+			WeeklySchedule dialog = new WeeklySchedule();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -37,7 +36,7 @@ public class DisplaySchedules extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DisplaySchedules() {
+	public WeeklySchedule() {
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,43 +45,32 @@ public class DisplaySchedules extends JDialog {
 		setResizable(false);
 		contentPanel.setLayout(null);
 
-		JLabel titleLabel = new JLabel("Display Schedules");
+		JLabel titleLabel = new JLabel("Weekly Schedule");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setBounds(10, 11, 200, 17);
 		contentPanel.add(titleLabel);
 		
-		JLabel startLocationNameLabel = new JLabel("Start Location Name");
-		startLocationNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		startLocationNameLabel.setBounds(10, 40, 150, 17);
-		contentPanel.add(startLocationNameLabel);
+		JLabel driverIDLabel = new JLabel("Driver ID");
+		driverIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		driverIDLabel.setBounds(10, 40, 150, 17);
+		contentPanel.add(driverIDLabel);
 		
-		startLocationNameTextField = new JTextField();
-		startLocationNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		startLocationNameTextField.setBounds(10, 60, 150, 25);
-		contentPanel.add(startLocationNameTextField);
-		startLocationNameTextField.setColumns(10);
-		
-		JLabel destinationNameLabel = new JLabel("Destination Name");
-		destinationNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		destinationNameLabel.setBounds(10, 90, 150, 17);
-		contentPanel.add(destinationNameLabel);
-		
-		destinationNameTextField = new JTextField();
-		destinationNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		destinationNameTextField.setColumns(10);
-		destinationNameTextField.setBounds(10, 110, 150, 25);
-		contentPanel.add(destinationNameTextField);
+		driverIDTextField = new JTextField();
+		driverIDTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		driverIDTextField.setBounds(10, 60, 150, 25);
+		contentPanel.add(driverIDTextField);
+		driverIDTextField.setColumns(10);
 		
 		JLabel dateLabel = new JLabel("Date (YYYY-MM-DD)");
 		dateLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		dateLabel.setBounds(10, 140, 150, 17);
+		dateLabel.setBounds(10, 90, 150, 17);
 		contentPanel.add(dateLabel);
 		
 		dateTextField = new JTextField();
 		dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		dateTextField.setColumns(10);
-		dateTextField.setBounds(10, 160, 150, 25);
+		dateTextField.setBounds(10, 110, 150, 25);
 		contentPanel.add(dateTextField);
 		
 		JButton displayButton = new JButton("Display");

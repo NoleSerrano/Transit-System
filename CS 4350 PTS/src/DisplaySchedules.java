@@ -24,7 +24,6 @@ public class DisplaySchedules extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	// TEST
 	public static void main(String[] args) {
 		try {
 			DisplaySchedules dialog = new DisplaySchedules();

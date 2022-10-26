@@ -23,7 +23,6 @@ public class AddBus extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	// TEST
 	public static void main(String[] args) {
 		try {
 			AddBus dialog = new AddBus();

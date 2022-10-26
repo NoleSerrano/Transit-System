@@ -23,7 +23,6 @@ public class AddDriver extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	// TEST
 	public static void main(String[] args) {
 		try {
 			AddDriver dialog = new AddDriver();

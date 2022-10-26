@@ -22,7 +22,6 @@ public class DeleteBus extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	// TEST
 	public static void main(String[] args) {
 		try {
 			DeleteBus dialog = new DeleteBus();

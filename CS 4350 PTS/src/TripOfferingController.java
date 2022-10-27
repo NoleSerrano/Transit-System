@@ -5,6 +5,8 @@ import java.sql.Time;
 
 public class TripOfferingController {
 
+	private Connection con;
+	
 	public TripOfferingController() {
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
@@ -13,11 +15,15 @@ public class TripOfferingController {
 			String password = "DBpassword1";
 			Class.forName(driver);
 
-			Connection conn = DriverManager.getConnection(url, username, password);
+			con = DriverManager.getConnection(url, username, password);
 			System.out.println("Connected");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+
+	public TripOfferingController(Connection con) {
+		this.con = con;
 	}
 
 	public void addTripOffering(int tripNumber, Date date, Time scheduledStartTime, Time scheduledArrivalTime,

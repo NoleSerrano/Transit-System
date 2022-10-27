@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.Time;
 
 public class MainMenuController {
+	
+	private Connection con;
 
 	public MainMenuController() throws Exception {
 		try {
@@ -13,11 +15,15 @@ public class MainMenuController {
 			String password = "DBpassword1";
 			Class.forName(driver);
 
-			Connection conn = DriverManager.getConnection(url, username, password);
+			con = DriverManager.getConnection(url, username, password);
 			System.out.println("Connected");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	public MainMenuController(Connection con) {
+		this.con = con;
 	}
 
 	public void recordData(int tripNumber, Date date, Time scheduledStartTime, int stopNumber, Time actualStartTime,

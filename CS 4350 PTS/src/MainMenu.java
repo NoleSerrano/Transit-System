@@ -1,7 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -47,8 +48,12 @@ public class MainMenu extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Exception 
 	 */
-	public MainMenu() {
+	public MainMenu() throws Exception {
+
+		createConnection();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 666, 484);
 		contentPane = new JPanel();
@@ -427,6 +432,21 @@ public class MainMenu extends JFrame {
 				popup.show(e.getComponent(), popup.getX(), popup.getY() + 30);
 			}
 		});
+	}
+
+	public static void createConnection() throws Exception {
+		try {
+			String driver = "com.mysql.cj.jdbc.Driver";
+			String url = "jdbc:mysql://localhost:3306/pts";
+			String username = "root";
+			String password = "DBpassword1";
+			Class.forName(driver);
+
+			Connection conn = DriverManager.getConnection(url, username, password);
+			System.out.println("Connected");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 }

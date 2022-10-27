@@ -1,4 +1,7 @@
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -22,6 +25,7 @@ import java.awt.Color;
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
+	public static MainMenu frame;
 
 	/**
 	 * Launch the application.
@@ -30,8 +34,10 @@ public class MainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainMenu frame = new MainMenu();
+					frame = new MainMenu();
+
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,7 +55,7 @@ public class MainMenu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setResizable(false);
-		contentPane.setBackground(new Color(246,249,250));
+		contentPane.setBackground(new Color(246, 249, 250));
 		contentPane.setLayout(null);
 
 		JLabel titleLabel = new JLabel("Transit System");
@@ -59,6 +65,15 @@ public class MainMenu extends JFrame {
 		contentPane.add(titleLabel);
 
 		JButton recordData = new JButton("Record Data");
+		recordData.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				RecordData rd = new RecordData(frame);
+				disable(); // disable it while it is open
+				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				rd.setVisible(true);
+			}
+		});
 		recordData.setBackground(SystemColor.controlHighlight);
 		recordData.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		recordData.addActionListener(new ActionListener() {
@@ -213,6 +228,7 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBackground(Color.DARK_GRAY);
 		btnNewButton.setBounds(430, 402, 190, 32);
 		contentPane.add(btnNewButton);
+
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

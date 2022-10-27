@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
@@ -36,7 +38,7 @@ public class RecordData extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			RecordData dialog = new RecordData();
+			RecordData dialog = new RecordData(null); // error if running on its own
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,7 +49,7 @@ public class RecordData extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RecordData() {
+	public RecordData(MainMenu mainMenu) {
 		setBounds(100, 100, 346, 334);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,6 +57,13 @@ public class RecordData extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	mainMenu.enable();
+            }
+        });
 
 		JLabel titleLabel = new JLabel("Record Data of Trip Offering");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -160,5 +169,6 @@ public class RecordData extends JDialog {
 		numberOfPassengersOutTextField.setColumns(10);
 		numberOfPassengersOutTextField.setBounds(170, 210, 150, 25);
 		contentPanel.add(numberOfPassengersOutTextField);
+		
 	}
 }

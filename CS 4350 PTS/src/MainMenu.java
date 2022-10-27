@@ -24,10 +24,10 @@ import java.awt.Color;
 
 public class MainMenu extends JFrame {
 
-	// nts: space for buttons, tab for swtiching between buttons/text fields
-	
+	// nts: space for buttons, tab for swtiching between buttons/text fields, right
+	// click for popup menus
+
 	private JPanel contentPane;
-	public static MainMenu frame;
 
 	/**
 	 * Launch the application.
@@ -36,10 +36,8 @@ public class MainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new MainMenu();
-
+					MainMenu frame = new MainMenu();
 					frame.setVisible(true);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -70,11 +68,10 @@ public class MainMenu extends JFrame {
 		recordData.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				disable();
 				RecordData rd = new RecordData();
-				disable(); // disable it while it is open
 				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				rd.setVisible(true);
-				// main menu is reenabled in child frame
 				rd.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
@@ -95,6 +92,21 @@ public class MainMenu extends JFrame {
 		contentPane.add(recordData);
 
 		JButton weeklySchedule = new JButton("Weekly Schedule");
+		weeklySchedule.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				disable();
+				WeeklySchedule ws = new WeeklySchedule();
+				ws.setLocationRelativeTo(contentPane);
+				ws.setVisible(true);
+				ws.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		weeklySchedule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -106,6 +118,25 @@ public class MainMenu extends JFrame {
 		contentPane.add(weeklySchedule);
 
 		JButton displaySchedules = new JButton("Display Schedules");
+		displaySchedules.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				disable();
+				DisplaySchedules ds = new DisplaySchedules();
+				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				ds.setVisible(true);
+				ds.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
+		displaySchedules.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		displaySchedules.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		displaySchedules.setFocusPainted(false);
 		displaySchedules.setBackground(SystemColor.controlHighlight);
@@ -113,6 +144,21 @@ public class MainMenu extends JFrame {
 		contentPane.add(displaySchedules);
 
 		JButton displayStops = new JButton("Display Stops");
+		displayStops.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				disable();
+				DisplayStops ds = new DisplayStops();
+				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				ds.setVisible(true);
+				ds.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		displayStops.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -141,14 +187,56 @@ public class MainMenu extends JFrame {
 		addPopup(driverButton, driverPM);
 
 		JMenuItem addDr = new JMenuItem("Add");
+		addDr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				AddDriver dr = new AddDriver();
+				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				dr.setVisible(true);
+				dr.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		addDr.setBackground(Color.WHITE);
 		driverPM.add(addDr);
 
 		JMenuItem deleteDr = new JMenuItem("Delete");
+		deleteDr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				DeleteDriver dr = new DeleteDriver();
+				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				dr.setVisible(true);
+				dr.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		deleteDr.setBackground(Color.WHITE);
 		driverPM.add(deleteDr);
 
 		JMenuItem updateDr = new JMenuItem("Update");
+		updateDr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				UpdateDriver dr = new UpdateDriver();
+				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				dr.setVisible(true);
+				dr.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		updateDr.setBackground(Color.WHITE);
 		driverPM.add(updateDr);
 
@@ -157,10 +245,6 @@ public class MainMenu extends JFrame {
 		driverPM.add(displayDr);
 
 		JButton tripOfferingButton = new JButton("Trip Offering");
-		tripOfferingButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		tripOfferingButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tripOfferingButton.setFocusPainted(false);
 		tripOfferingButton.setBackground(SystemColor.controlHighlight);
@@ -173,14 +257,56 @@ public class MainMenu extends JFrame {
 		addPopup(tripOfferingButton, tripOfferingPM);
 
 		JMenuItem addTO = new JMenuItem("Add");
+		addTO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				AddTripOffering to = new AddTripOffering();
+				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				to.setVisible(true);
+				to.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		addTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(addTO);
 
 		JMenuItem deleteTO = new JMenuItem("Delete");
+		deleteTO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				DeleteTripOffering to = new DeleteTripOffering();
+				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				to.setVisible(true);
+				to.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		deleteTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(deleteTO);
 
 		JMenuItem updateTO = new JMenuItem("Update");
+		updateTO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				UpdateTripOffering to = new UpdateTripOffering();
+				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				to.setVisible(true);
+				to.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		updateTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(updateTO);
 
@@ -201,14 +327,56 @@ public class MainMenu extends JFrame {
 		addPopup(busButton, busPM);
 
 		JMenuItem addBu = new JMenuItem("Add");
+		addBu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				AddBus bu = new AddBus();
+				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				bu.setVisible(true);
+				bu.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		addBu.setBackground(Color.WHITE);
 		busPM.add(addBu);
 
 		JMenuItem deleteBu = new JMenuItem("Delete");
+		deleteBu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				DeleteBus bu = new DeleteBus();
+				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				bu.setVisible(true);
+				bu.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		deleteBu.setBackground(Color.WHITE);
 		busPM.add(deleteBu);
 
 		JMenuItem updateBu = new JMenuItem("Update");
+		updateBu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				disable();
+				UpdateBus bu = new UpdateBus();
+				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				bu.setVisible(true);
+				bu.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+			}
+		});
 		updateBu.setBackground(Color.WHITE);
 		busPM.add(updateBu);
 
@@ -260,4 +428,5 @@ public class MainMenu extends JFrame {
 			}
 		});
 	}
+
 }

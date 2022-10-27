@@ -24,6 +24,8 @@ import java.awt.Color;
 
 public class MainMenu extends JFrame {
 
+	// nts: space for buttons, tab for swtiching between buttons/text fields
+	
 	private JPanel contentPane;
 	public static MainMenu frame;
 
@@ -68,10 +70,18 @@ public class MainMenu extends JFrame {
 		recordData.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				RecordData rd = new RecordData(frame);
+				RecordData rd = new RecordData();
 				disable(); // disable it while it is open
 				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				rd.setVisible(true);
+				// main menu is reenabled in child frame
+				rd.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						enable();
+					}
+				});
+
 			}
 		});
 		recordData.setBackground(SystemColor.controlHighlight);

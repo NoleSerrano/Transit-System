@@ -32,3 +32,7 @@
 /UpdateTripOffering.class
 /WeeklySchedule$1.class
 /WeeklySchedule.class
+/MainMenuController.class
+/BusController.class
+/DriverController.class
+/TripOfferingController.class

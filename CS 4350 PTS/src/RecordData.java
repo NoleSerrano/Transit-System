@@ -38,7 +38,7 @@ public class RecordData extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			RecordData dialog = new RecordData(null); // error if running on its own
+			RecordData dialog = new RecordData(new MainMenu());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.Time;
 
 public class TripOfferingController {
 
@@ -17,21 +19,28 @@ public class TripOfferingController {
 			System.out.println(e);
 		}
 	}
-	
-	public void addTripOffering() {
-		
+
+	public void addTripOffering(int tripNumber, Date date, Time scheduledStartTime, Time scheduledArrivalTime,
+			int driverID, int busID) {
+
 	}
-	
-	public void deleteTripOffering() {
-		
+
+	public void deleteTripOffering(int tripNumber, Date date, Time scheduledStartTime) {
+
 	}
-	
-	public void updateTripOffering() {
-		
+
+	public String[] getTripOffering(int tripNumber, Date date, Time scheduledStartTime) {
+
+		return null;
 	}
-	
+
+	public void updateTripOffering(int tripNumber, Date date, Time scheduledStartTime, Time scheduledArrivalTime,
+			int driverID, int busID) {
+
+	}
+
 	public String[][] getTripOfferings() {
-		
+
 		return null;
 	}
 }

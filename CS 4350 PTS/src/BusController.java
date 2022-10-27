@@ -18,15 +18,20 @@ public class BusController {
 		}
 	}
 
-	public void addBus() {
+	public void addBus(String model, int year) {
 
 	}
 
-	public void deleteBus() {
+	public void deleteBus(int busID) {
 
 	}
 
-	public void updateBus() {
+	public String[] getBus(int busID) {
+
+		return null;
+	}
+
+	public void updateBus(int busID, String model, int year) {
 
 	}
 

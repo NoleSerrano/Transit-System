@@ -17,16 +17,21 @@ public class DriverController {
 			System.out.println(e);
 		}
 	}
-	
-	public void addDriver() {
+
+	public void addDriver(String driverName, String telephoneNumber) {
 
 	}
 
-	public void deleteDriver() {
+	public void deleteDriver(int driverID) {
 
 	}
 
-	public void updateDriver() {
+	public String[] getDriver(int driverID) {
+
+		return null;
+	}
+
+	public void updateDriver(int driverID, String driverName, String telephoneNumber) {
 
 	}
 

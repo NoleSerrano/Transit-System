@@ -63,6 +63,8 @@ public class MainMenu extends JFrame {
 		contentPane.setBackground(new Color(246, 249, 250));
 		contentPane.setLayout(null);
 
+		setLocationRelativeTo(null); // centers frame to the screen
+		
 		JLabel titleLabel = new JLabel("Transit System");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));

@@ -13,7 +13,7 @@ public class DriverController {
 			String password = "DBpassword1";
 			Class.forName(driver);
 
-			conn = DriverManager.getConnection(url, username, password);
+			con = DriverManager.getConnection(url, username, password);
 			System.out.println("Connected");
 		} catch (Exception e) {
 			System.out.println(e);

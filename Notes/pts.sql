@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `bus` (
 CREATE TABLE IF NOT EXISTS `driver` (
   `DriverID` int(11) NOT NULL AUTO_INCREMENT,
   `DriverName` varchar(50) DEFAULT NULL,
-  `DriverTelephoneNumber` varchar(50) DEFAULT NULL,
+  `TelephoneNumber` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`DriverID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

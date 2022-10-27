@@ -28,6 +28,7 @@ public class MainMenu extends JFrame {
 	// nts: space for buttons, tab for swtiching between buttons/text fields, right
 	// click for popup menus
 
+	private static Connection con;
 	private JPanel contentPane;
 
 	/**
@@ -76,7 +77,7 @@ public class MainMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				disable();
-				RecordData rd = new RecordData();
+				RecordData rd = new RecordData(con);
 				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				rd.setVisible(true);
 				rd.addWindowListener(new WindowAdapter() {
@@ -103,7 +104,7 @@ public class MainMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				disable();
-				WeeklySchedule ws = new WeeklySchedule();
+				WeeklySchedule ws = new WeeklySchedule(con);
 				ws.setLocationRelativeTo(contentPane);
 				ws.setVisible(true);
 				ws.addWindowListener(new WindowAdapter() {
@@ -129,7 +130,7 @@ public class MainMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				disable();
-				DisplaySchedules ds = new DisplaySchedules();
+				DisplaySchedules ds = new DisplaySchedules(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
 				ds.addWindowListener(new WindowAdapter() {
@@ -155,7 +156,7 @@ public class MainMenu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				disable();
-				DisplayStops ds = new DisplayStops();
+				DisplayStops ds = new DisplayStops(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
 				ds.addWindowListener(new WindowAdapter() {
@@ -197,7 +198,7 @@ public class MainMenu extends JFrame {
 		addDr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				AddDriver dr = new AddDriver();
+				AddDriver dr = new AddDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
 				dr.addWindowListener(new WindowAdapter() {
@@ -215,7 +216,7 @@ public class MainMenu extends JFrame {
 		deleteDr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				DeleteDriver dr = new DeleteDriver();
+				DeleteDriver dr = new DeleteDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
 				dr.addWindowListener(new WindowAdapter() {
@@ -233,7 +234,7 @@ public class MainMenu extends JFrame {
 		updateDr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				UpdateDriver dr = new UpdateDriver();
+				UpdateDriver dr = new UpdateDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
 				dr.addWindowListener(new WindowAdapter() {
@@ -267,7 +268,7 @@ public class MainMenu extends JFrame {
 		addTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				AddTripOffering to = new AddTripOffering();
+				AddTripOffering to = new AddTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
 				to.addWindowListener(new WindowAdapter() {
@@ -285,7 +286,7 @@ public class MainMenu extends JFrame {
 		deleteTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				DeleteTripOffering to = new DeleteTripOffering();
+				DeleteTripOffering to = new DeleteTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
 				to.addWindowListener(new WindowAdapter() {
@@ -303,7 +304,7 @@ public class MainMenu extends JFrame {
 		updateTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				UpdateTripOffering to = new UpdateTripOffering();
+				UpdateTripOffering to = new UpdateTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
 				to.addWindowListener(new WindowAdapter() {
@@ -337,7 +338,7 @@ public class MainMenu extends JFrame {
 		addBu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				AddBus bu = new AddBus();
+				AddBus bu = new AddBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
 				bu.addWindowListener(new WindowAdapter() {
@@ -355,7 +356,7 @@ public class MainMenu extends JFrame {
 		deleteBu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				DeleteBus bu = new DeleteBus();
+				DeleteBus bu = new DeleteBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
 				bu.addWindowListener(new WindowAdapter() {
@@ -373,7 +374,7 @@ public class MainMenu extends JFrame {
 		updateBu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				disable();
-				UpdateBus bu = new UpdateBus();
+				UpdateBus bu = new UpdateBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
 				bu.addWindowListener(new WindowAdapter() {
@@ -444,7 +445,7 @@ public class MainMenu extends JFrame {
 			String password = "DBpassword1";
 			Class.forName(driver);
 
-			Connection conn = DriverManager.getConnection(url, username, password);
+			con = DriverManager.getConnection(url, username, password);
 			System.out.println("Connected");
 		} catch (Exception e) {
 			System.out.println(e);

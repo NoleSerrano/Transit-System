@@ -7,11 +7,14 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class AddDriver extends JDialog {
@@ -25,7 +28,7 @@ public class AddDriver extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AddDriver dialog = new AddDriver();
+			AddDriver dialog = new AddDriver(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +39,10 @@ public class AddDriver extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AddDriver() {
+	public AddDriver(Connection con) {
+		
+		DriverController dc = new DriverController(con);
+		
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,6 +82,11 @@ public class AddDriver extends JDialog {
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String driverName = driverNameTextField.getText();
+				String telephoneNumber = telephoneNumberTextField.getText();
+				dc.addDriver(driverName, telephoneNumber);
+				JOptionPane message = new JOptionPane("TEST");
+				message.showMessageDialog(null, "Driver added");
 			}
 		});
 		addButton.setBackground(SystemColor.textInactiveText);

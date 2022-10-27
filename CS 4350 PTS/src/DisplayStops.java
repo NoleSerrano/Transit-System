@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class DisplayStops extends JDialog {
@@ -25,7 +26,7 @@ public class DisplayStops extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DisplayStops dialog = new DisplayStops();
+			DisplayStops dialog = new DisplayStops(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +37,7 @@ public class DisplayStops extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DisplayStops() {
+	public DisplayStops(Connection con) {
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

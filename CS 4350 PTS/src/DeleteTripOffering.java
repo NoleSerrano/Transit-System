@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class DeleteTripOffering extends JDialog {
@@ -26,7 +27,7 @@ public class DeleteTripOffering extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DeleteTripOffering dialog = new DeleteTripOffering();
+			DeleteTripOffering dialog = new DeleteTripOffering(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -37,7 +38,7 @@ public class DeleteTripOffering extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DeleteTripOffering() {
+	public DeleteTripOffering(Connection con) {
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

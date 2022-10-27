@@ -7,11 +7,14 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class DeleteDriver extends JDialog {
@@ -24,7 +27,7 @@ public class DeleteDriver extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DeleteDriver dialog = new DeleteDriver();
+			DeleteDriver dialog = new DeleteDriver(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -35,7 +38,10 @@ public class DeleteDriver extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DeleteDriver() {
+	public DeleteDriver(Connection con) {
+
+		DriverController dc = new DriverController(con);
+
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,21 +55,25 @@ public class DeleteDriver extends JDialog {
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setBounds(10, 11, 200, 17);
 		contentPanel.add(titleLabel);
-		
+
 		JLabel driverIDLabel = new JLabel("Driver ID");
 		driverIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		driverIDLabel.setBounds(10, 40, 150, 17);
 		contentPanel.add(driverIDLabel);
-		
+
 		driverIDTextField = new JTextField();
 		driverIDTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		driverIDTextField.setBounds(10, 60, 200, 25);
 		contentPanel.add(driverIDTextField);
 		driverIDTextField.setColumns(10);
-		
+
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String driverID = driverIDTextField.getText();
+				JOptionPane message = new JOptionPane("TEST");
+				dc.deleteDriver(Integer.valueOf(driverID));
+				message.showMessageDialog(null, "Driver deleted");
 			}
 		});
 		deleteButton.setBackground(SystemColor.textInactiveText);

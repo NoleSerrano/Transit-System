@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class AddBus extends JDialog {
@@ -25,7 +26,7 @@ public class AddBus extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AddBus dialog = new AddBus();
+			AddBus dialog = new AddBus(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +37,9 @@ public class AddBus extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AddBus() {
+	public AddBus(Connection con) {
+		
+		
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,6 +47,7 @@ public class AddBus extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
 
 		JLabel titleLabel = new JLabel("Add Bus");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

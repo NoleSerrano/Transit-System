@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
@@ -38,7 +39,7 @@ public class RecordData extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			RecordData dialog = new RecordData();
+			RecordData dialog = new RecordData(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -49,7 +50,7 @@ public class RecordData extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RecordData() {
+	public RecordData(Connection con) {
 		setBounds(100, 100, 346, 334);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

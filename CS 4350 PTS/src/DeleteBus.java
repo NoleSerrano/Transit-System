@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class DeleteBus extends JDialog {
@@ -24,7 +25,7 @@ public class DeleteBus extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DeleteBus dialog = new DeleteBus();
+			DeleteBus dialog = new DeleteBus(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -35,7 +36,7 @@ public class DeleteBus extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DeleteBus() {
+	public DeleteBus(Connection con) {
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

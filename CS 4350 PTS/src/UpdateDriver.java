@@ -7,6 +7,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -27,6 +29,7 @@ public class UpdateDriver extends JDialog {
 	private JButton btnSelect;
 
 	private boolean isSelected = false;
+	private String[] driver;
 
 	/**
 	 * Launch the application.
@@ -46,7 +49,9 @@ public class UpdateDriver extends JDialog {
 	 */
 	public UpdateDriver(Connection con) {
 
+		JOptionPane message = new JOptionPane(null);
 		setModalityType(ModalityType.APPLICATION_MODAL);
+		DriverController dc = new DriverController(con);
 
 		setBounds(100, 100, 346, 284);
 		getContentPane().setLayout(new BorderLayout());
@@ -111,6 +116,15 @@ public class UpdateDriver extends JDialog {
 		contentPanel.add(telephoneNumberLabel);
 
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int driverID = Integer.valueOf(driverIDTextField.getText());
+				String driverName = driverNameTextField.getText();
+				String telephoneNumber = telephoneNumberTextField.getText();
+				dc.updateDriver(driverID, driverName, telephoneNumber);
+				message.showMessageDialog(null, "Driver updated");
+			}
+		});
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFocusPainted(false);
 		btnUpdate.setBackground(SystemColor.textInactiveText);
@@ -122,18 +136,33 @@ public class UpdateDriver extends JDialog {
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isSelected) { // item selected
-					isSelected = true;
-					btnUpdate.setEnabled(true);
-					telephoneNumberTextField.setEnabled(true);
-					driverNameTextField.setEnabled(true);
-					driverIDTextField.setEnabled(false);
-					btnSelect.setText("Unselect");
+					try {
+						driver = dc.getDriver(Integer.valueOf(driverIDTextField.getText()));
+						if (driver == null) {
+							message.showMessageDialog(null, "No driver found");
+						} else { // item found
+							isSelected = true;
+							btnUpdate.setEnabled(true);
+							telephoneNumberTextField.setEnabled(true);
+							telephoneNumberTextField.setText(driver[1]);
+							driverNameTextField.setEnabled(true);
+							driverNameTextField.setText(driver[0]);
+							driverIDTextField.setEnabled(false);
+							btnSelect.setText("Unselect");
+						}
+					} catch (Exception e2) {
+						System.out.println(e2);
+						message.showMessageDialog(null, "Invalid input");
+					}
 				} else { // item not selected
 					isSelected = false;
 					btnUpdate.setEnabled(false);
 					telephoneNumberTextField.setEnabled(false);
+					telephoneNumberTextField.setText("");
 					driverNameTextField.setEnabled(false);
+					driverNameTextField.setText("");
 					driverIDTextField.setEnabled(true);
+					driverIDTextField.setText("");
 					btnSelect.setText("Select");
 				}
 			}
@@ -143,5 +172,12 @@ public class UpdateDriver extends JDialog {
 		btnSelect.setBackground(SystemColor.textInactiveText);
 		btnSelect.setBounds(10, 200, 150, 30);
 		contentPanel.add(btnSelect);
+	}
+
+	private String nullToEmpty(String s) {
+		if (s.isEmpty()) {
+			return null;
+		}
+		return s;
 	}
 }

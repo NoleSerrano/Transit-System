@@ -41,6 +41,7 @@ public class DeleteDriver extends JDialog {
 	 */
 	public DeleteDriver(Connection con) {
 
+		JOptionPane message = new JOptionPane(null);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		DriverController dc = new DriverController(con);
 
@@ -51,7 +52,7 @@ public class DeleteDriver extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
-		
+
 		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Delete Driver");
@@ -75,7 +76,6 @@ public class DeleteDriver extends JDialog {
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String driverID = driverIDTextField.getText();
-				JOptionPane message = new JOptionPane(null);
 				try {
 					boolean driverFound = dc.deleteDriver(Integer.valueOf(driverID));
 					if (!driverFound) {

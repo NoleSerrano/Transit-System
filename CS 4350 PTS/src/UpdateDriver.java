@@ -26,6 +26,8 @@ public class UpdateDriver extends JDialog {
 	private JLabel telephoneNumberLabel;
 	private JButton btnSelect;
 
+	private boolean isSelected = false;
+
 	/**
 	 * Launch the application.
 	 */
@@ -43,9 +45,9 @@ public class UpdateDriver extends JDialog {
 	 * Create the dialog.
 	 */
 	public UpdateDriver(Connection con) {
-		
+
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		
+
 		setBounds(100, 100, 346, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,7 +55,7 @@ public class UpdateDriver extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
-		
+
 		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Update Driver");
@@ -88,12 +90,14 @@ public class UpdateDriver extends JDialog {
 		driverNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		driverNameTextField.setColumns(10);
 		driverNameTextField.setBounds(170, 60, 150, 25);
+		driverNameTextField.setEnabled(false);
 		contentPanel.add(driverNameTextField);
 
 		telephoneNumberTextField = new JTextField();
 		telephoneNumberTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		telephoneNumberTextField.setColumns(10);
 		telephoneNumberTextField.setBounds(170, 110, 150, 25);
+		telephoneNumberTextField.setEnabled(false);
 		contentPanel.add(telephoneNumberTextField);
 
 		driverNameLabel = new JLabel("Driver Name");
@@ -111,9 +115,29 @@ public class UpdateDriver extends JDialog {
 		btnUpdate.setFocusPainted(false);
 		btnUpdate.setBackground(SystemColor.textInactiveText);
 		btnUpdate.setBounds(170, 200, 150, 30);
+		btnUpdate.setEnabled(false);
 		contentPanel.add(btnUpdate);
 
 		btnSelect = new JButton("Select");
+		btnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!isSelected) { // item selected
+					isSelected = true;
+					btnUpdate.setEnabled(true);
+					telephoneNumberTextField.setEnabled(true);
+					driverNameTextField.setEnabled(true);
+					driverIDTextField.setEnabled(false);
+					btnSelect.setText("Unselect");
+				} else { // item not selected
+					isSelected = false;
+					btnUpdate.setEnabled(false);
+					telephoneNumberTextField.setEnabled(false);
+					driverNameTextField.setEnabled(false);
+					driverIDTextField.setEnabled(true);
+					btnSelect.setText("Select");
+				}
+			}
+		});
 		btnSelect.setForeground(Color.WHITE);
 		btnSelect.setFocusPainted(false);
 		btnSelect.setBackground(SystemColor.textInactiveText);

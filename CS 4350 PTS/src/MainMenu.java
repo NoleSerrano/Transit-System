@@ -81,12 +81,6 @@ public class MainMenu extends JFrame {
 				RecordData rd = new RecordData(con);
 				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				rd.setVisible(true);
-				rd.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
-
-					}
-				});
 
 			}
 		});
@@ -108,12 +102,7 @@ public class MainMenu extends JFrame {
 				WeeklySchedule ws = new WeeklySchedule(con);
 				ws.setLocationRelativeTo(contentPane);
 				ws.setVisible(true);
-				ws.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		weeklySchedule.addActionListener(new ActionListener() {
@@ -134,12 +123,7 @@ public class MainMenu extends JFrame {
 				DisplaySchedules ds = new DisplaySchedules(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
-				ds.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		displaySchedules.addActionListener(new ActionListener() {
@@ -160,12 +144,7 @@ public class MainMenu extends JFrame {
 				DisplayStops ds = new DisplayStops(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
-				ds.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		displayStops.addActionListener(new ActionListener() {
@@ -201,11 +180,7 @@ public class MainMenu extends JFrame {
 				AddDriver dr = new AddDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
-				dr.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
-					}
-				});
+
 			}
 		});
 		addDr.setBackground(Color.WHITE);
@@ -218,12 +193,7 @@ public class MainMenu extends JFrame {
 				DeleteDriver dr = new DeleteDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
-				dr.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		deleteDr.setBackground(Color.WHITE);
@@ -236,12 +206,7 @@ public class MainMenu extends JFrame {
 				UpdateDriver dr = new UpdateDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
-				dr.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		updateDr.setBackground(Color.WHITE);
@@ -270,12 +235,7 @@ public class MainMenu extends JFrame {
 				AddTripOffering to = new AddTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
-				to.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		addTO.setBackground(Color.WHITE);
@@ -288,12 +248,7 @@ public class MainMenu extends JFrame {
 				DeleteTripOffering to = new DeleteTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
-				to.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		deleteTO.setBackground(Color.WHITE);
@@ -306,12 +261,7 @@ public class MainMenu extends JFrame {
 				UpdateTripOffering to = new UpdateTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
-				to.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		updateTO.setBackground(Color.WHITE);
@@ -340,12 +290,7 @@ public class MainMenu extends JFrame {
 				AddBus bu = new AddBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
-				bu.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		addBu.setBackground(Color.WHITE);
@@ -358,12 +303,7 @@ public class MainMenu extends JFrame {
 				DeleteBus bu = new DeleteBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
-				bu.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		deleteBu.setBackground(Color.WHITE);
@@ -376,12 +316,7 @@ public class MainMenu extends JFrame {
 				UpdateBus bu = new UpdateBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
-				bu.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
 
-					}
-				});
 			}
 		});
 		updateBu.setBackground(Color.WHITE);

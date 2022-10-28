@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
@@ -40,6 +41,7 @@ public class DeleteDriver extends JDialog {
 	 */
 	public DeleteDriver(Connection con) {
 
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		DriverController dc = new DriverController(con);
 
 		setBounds(100, 100, 236, 284);

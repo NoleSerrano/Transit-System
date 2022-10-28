@@ -49,7 +49,8 @@ public class MainMenu extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public MainMenu() throws Exception {
 
@@ -65,7 +66,7 @@ public class MainMenu extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null); // centers frame to the screen
-		
+
 		JLabel titleLabel = new JLabel("Transit System");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -76,14 +77,14 @@ public class MainMenu extends JFrame {
 		recordData.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				disable();
+
 				RecordData rd = new RecordData(con);
 				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				rd.setVisible(true);
 				rd.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 
@@ -103,14 +104,14 @@ public class MainMenu extends JFrame {
 		weeklySchedule.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				disable();
+
 				WeeklySchedule ws = new WeeklySchedule(con);
 				ws.setLocationRelativeTo(contentPane);
 				ws.setVisible(true);
 				ws.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -129,14 +130,14 @@ public class MainMenu extends JFrame {
 		displaySchedules.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				disable();
+
 				DisplaySchedules ds = new DisplaySchedules(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
 				ds.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -155,14 +156,14 @@ public class MainMenu extends JFrame {
 		displayStops.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				disable();
+
 				DisplayStops ds = new DisplayStops(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
 				ds.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -197,14 +198,12 @@ public class MainMenu extends JFrame {
 		JMenuItem addDr = new JMenuItem("Add");
 		addDr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
 				AddDriver dr = new AddDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
 				dr.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
 					}
 				});
 			}
@@ -215,14 +214,14 @@ public class MainMenu extends JFrame {
 		JMenuItem deleteDr = new JMenuItem("Delete");
 		deleteDr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				DeleteDriver dr = new DeleteDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
 				dr.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -233,14 +232,14 @@ public class MainMenu extends JFrame {
 		JMenuItem updateDr = new JMenuItem("Update");
 		updateDr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				UpdateDriver dr = new UpdateDriver(con);
 				dr.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				dr.setVisible(true);
 				dr.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -267,14 +266,14 @@ public class MainMenu extends JFrame {
 		JMenuItem addTO = new JMenuItem("Add");
 		addTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				AddTripOffering to = new AddTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
 				to.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -285,14 +284,14 @@ public class MainMenu extends JFrame {
 		JMenuItem deleteTO = new JMenuItem("Delete");
 		deleteTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				DeleteTripOffering to = new DeleteTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
 				to.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -303,14 +302,14 @@ public class MainMenu extends JFrame {
 		JMenuItem updateTO = new JMenuItem("Update");
 		updateTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				UpdateTripOffering to = new UpdateTripOffering(con);
 				to.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				to.setVisible(true);
 				to.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -337,14 +336,14 @@ public class MainMenu extends JFrame {
 		JMenuItem addBu = new JMenuItem("Add");
 		addBu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				AddBus bu = new AddBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
 				bu.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -355,14 +354,14 @@ public class MainMenu extends JFrame {
 		JMenuItem deleteBu = new JMenuItem("Delete");
 		deleteBu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				DeleteBus bu = new DeleteBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
 				bu.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}
@@ -373,14 +372,14 @@ public class MainMenu extends JFrame {
 		JMenuItem updateBu = new JMenuItem("Update");
 		updateBu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				disable();
+
 				UpdateBus bu = new UpdateBus(con);
 				bu.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				bu.setVisible(true);
 				bu.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
-						enable();
+
 					}
 				});
 			}

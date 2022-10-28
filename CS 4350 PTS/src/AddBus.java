@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
@@ -39,6 +40,7 @@ public class AddBus extends JDialog {
 	 */
 	public AddBus(Connection con) {
 		
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());

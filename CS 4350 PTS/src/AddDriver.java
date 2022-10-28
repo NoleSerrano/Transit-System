@@ -41,6 +41,7 @@ public class AddDriver extends JDialog {
 	 */
 	public AddDriver(Connection con) {
 		
+		setModalityType(ModalityType.APPLICATION_MODAL); // stops main menu from being used
 		DriverController dc = new DriverController(con);
 		
 		setBounds(100, 100, 236, 284);

@@ -45,6 +45,9 @@ public class UpdateTripOffering extends JDialog {
 	 * Create the dialog.
 	 */
 	public UpdateTripOffering(Connection con) {
+
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		
 		setBounds(100, 100, 346, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -50,6 +50,8 @@ public class DisplaySchedules extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
+		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Display Schedules");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

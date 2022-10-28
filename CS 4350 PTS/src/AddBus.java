@@ -50,6 +50,7 @@ public class AddBus extends JDialog {
 		setResizable(false);
 		contentPanel.setLayout(null);
 		
+		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Add Bus");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

@@ -49,6 +49,8 @@ public class WeeklySchedule extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
+		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Weekly Schedule");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

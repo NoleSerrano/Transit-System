@@ -51,6 +51,8 @@ public class DeleteDriver extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
+		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Delete Driver");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -73,9 +75,19 @@ public class DeleteDriver extends JDialog {
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String driverID = driverIDTextField.getText();
-				JOptionPane message = new JOptionPane("TEST");
-				dc.deleteDriver(Integer.valueOf(driverID));
-				message.showMessageDialog(null, "Driver deleted");
+				JOptionPane message = new JOptionPane(null);
+				try {
+					boolean driverFound = dc.deleteDriver(Integer.valueOf(driverID));
+					if (!driverFound) {
+						message.showMessageDialog(null, "Driver not found");
+					} else {
+						message.showMessageDialog(null, "Driver deleted");
+					}
+				} catch (Exception e2) {
+					System.out.println(e2);
+					message.showMessageDialog(null, "Invalid input");
+				}
+
 			}
 		});
 		deleteButton.setBackground(SystemColor.textInactiveText);

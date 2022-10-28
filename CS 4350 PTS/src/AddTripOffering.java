@@ -56,6 +56,8 @@ public class AddTripOffering extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
+		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Add Trip Offering");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

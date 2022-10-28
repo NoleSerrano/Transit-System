@@ -53,6 +53,8 @@ public class UpdateBus extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
+		
+		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Update Bus");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);

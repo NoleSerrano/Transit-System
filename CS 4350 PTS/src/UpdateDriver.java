@@ -77,17 +77,6 @@ public class UpdateDriver extends JDialog {
 		contentPanel.add(driverIDTextField);
 		driverIDTextField.setColumns(10);
 
-		JButton recordButton = new JButton("Select");
-		recordButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		recordButton.setBackground(SystemColor.textInactiveText);
-		recordButton.setForeground(Color.WHITE);
-		recordButton.setBounds(90, 250, 150, 30);
-		recordButton.setFocusPainted(false);
-		contentPanel.add(recordButton);
-
 		driverNameTextField = new JTextField();
 		driverNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		driverNameTextField.setColumns(10);
@@ -116,8 +105,8 @@ public class UpdateDriver extends JDialog {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int driverID = Integer.valueOf(driverIDTextField.getText());
-				String driverName = driverNameTextField.getText();
-				String telephoneNumber = telephoneNumberTextField.getText();
+				String driverName = emptyToNull(driverNameTextField.getText());
+				String telephoneNumber = emptyToNull(telephoneNumberTextField.getText());
 				dc.updateDriver(driverID, driverName, telephoneNumber);
 				message.showMessageDialog(null, "Driver updated");
 			}
@@ -171,7 +160,7 @@ public class UpdateDriver extends JDialog {
 		contentPanel.add(btnSelect);
 	}
 
-	private String nullToEmpty(String s) {
+	private String emptyToNull(String s) {
 		if (s.isEmpty()) {
 			return null;
 		}

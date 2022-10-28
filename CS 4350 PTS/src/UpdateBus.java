@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.Connection;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -23,6 +25,9 @@ public class UpdateBus extends JDialog {
 	private JLabel modelLabel;
 	private JLabel yearLabel;
 	private JButton btnSelect;
+
+	private boolean isSelected = false;
+	private String[] bus;
 
 	/**
 	 * Launch the application.
@@ -41,9 +46,11 @@ public class UpdateBus extends JDialog {
 	 * Create the dialog.
 	 */
 	public UpdateBus(Connection con) {
-		
+
+		JOptionPane message = new JOptionPane(null);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		
+		BusController bc = new BusController(con);
+
 		setBounds(100, 100, 346, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,7 +58,7 @@ public class UpdateBus extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
-		
+
 		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Update Bus");
@@ -105,17 +112,83 @@ public class UpdateBus extends JDialog {
 		contentPanel.add(yearLabel);
 
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int busID = Integer.valueOf(busIDTextField.getText());
+				String model = emptyToNull(modelTextField.getText());
+				String year = emptyToNull(yearTextField.getText());
+				int flag = bc.updateBus(busID, model, year);
+				if (flag == 0) {
+					message.showMessageDialog(null, "Invalid year");
+				} else {
+					message.showMessageDialog(null, "Bus updated");
+				}
+			}
+		});
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFocusPainted(false);
 		btnUpdate.setBackground(SystemColor.textInactiveText);
 		btnUpdate.setBounds(170, 200, 150, 30);
 		contentPanel.add(btnUpdate);
 
+		btnUpdate.setEnabled(false);
+		yearTextField.setEnabled(false);
+		modelTextField.setEnabled(false);
+
 		btnSelect = new JButton("Select");
+		btnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!isSelected) { // item selected
+					try {
+						bus = bc.getBus(Integer.valueOf(busIDTextField.getText()));
+						if (bus == null) {
+							message.showMessageDialog(null, "No bus found");
+						} else { // item found
+							isSelected = true;
+							btnUpdate.setEnabled(true);
+							yearTextField.setEnabled(true);
+							yearTextField.setText(nullToEmpty(bus[1]));
+							modelTextField.setEnabled(true);
+							modelTextField.setText(bus[0]);
+							busIDTextField.setEnabled(false);
+							btnSelect.setText("Unselect");
+						}
+					} catch (Exception e2) {
+						System.out.println(e2);
+						message.showMessageDialog(null, "Invalid input");
+					}
+				} else { // item not selected
+					isSelected = false;
+					btnUpdate.setEnabled(false);
+					yearTextField.setEnabled(false);
+					yearTextField.setText("");
+					modelTextField.setEnabled(false);
+					modelTextField.setText("");
+					busIDTextField.setEnabled(true);
+					busIDTextField.setText("");
+					btnSelect.setText("Select");
+				}
+			}
+		});
 		btnSelect.setForeground(Color.WHITE);
 		btnSelect.setFocusPainted(false);
 		btnSelect.setBackground(SystemColor.textInactiveText);
 		btnSelect.setBounds(10, 200, 150, 30);
 		contentPanel.add(btnSelect);
+	}
+
+	private String emptyToNull(String s) {
+		if (s.isEmpty()) {
+			return null;
+		}
+		return s;
+	}
+
+	private String nullToEmpty(String s) {
+		if (s == "null") {
+			return "";
+		}
+		return s;
 	}
 }

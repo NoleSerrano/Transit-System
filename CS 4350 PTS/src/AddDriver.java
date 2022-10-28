@@ -84,8 +84,8 @@ public class AddDriver extends JDialog {
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String driverName = nullToEmpty(driverNameTextField.getText());
-				String telephoneNumber = nullToEmpty(telephoneNumberTextField.getText());
+				String driverName = emptyToNull(driverNameTextField.getText());
+				String telephoneNumber = emptyToNull(telephoneNumberTextField.getText());
 				dc.addDriver(driverName, telephoneNumber);
 				message.showMessageDialog(null, "Driver added");
 			}
@@ -97,7 +97,7 @@ public class AddDriver extends JDialog {
 		contentPanel.add(addButton);
 	}
 
-	private String nullToEmpty(String s) {
+	private String emptyToNull(String s) {
 		if (s.isEmpty()) {
 			return null;
 		}

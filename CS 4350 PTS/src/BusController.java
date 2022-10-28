@@ -26,15 +26,16 @@ public class BusController {
 		this.con = con;
 	}
 
-	public void addBus(String model, String year) {
+	public int addBus(String model, String year) {
 		try {
 			PreparedStatement stmt = con.prepareStatement("INSERT INTO Bus (Model, Year) VALUES (?, ?)");
 			stmt.setString(1, model);
 			stmt.setObject(2, year, java.sql.Types.INTEGER); // allows null
-			stmt.executeUpdate();
+			return stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return 0;
 	}
 
 	public int deleteBus(int busID) {
@@ -64,16 +65,17 @@ public class BusController {
 		return null;
 	}
 
-	public void updateBus(int busID, String model, int year) {
+	public int updateBus(int busID, String model, String year) {
 		try {
 			PreparedStatement stmt = con.prepareStatement("UPDATE Bus SET Model=?, Year=? WHERE BusID=?");
 			stmt.setString(1, model);
 			stmt.setObject(2, year, java.sql.Types.INTEGER);
 			stmt.setInt(3, busID);
-			stmt.executeUpdate();
+			return stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return 0;
 	}
 
 	public String[][] getBuses() {

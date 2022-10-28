@@ -84,11 +84,14 @@ public class AddBus extends JDialog {
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String model = nullToEmpty(modelTextField.getText());
-				String year = nullToEmpty(yearTextField.getText());
-				bc.addBus(model, year);
-				JOptionPane message = new JOptionPane(null);
-				message.showMessageDialog(null, "Bus added");
+				String model = emptyToNull(modelTextField.getText());
+				String year = emptyToNull(yearTextField.getText());
+				int flag = bc.addBus(model, year);
+				if (flag == 0) {
+					message.showMessageDialog(null, "Invalid year");
+				} else {
+					message.showMessageDialog(null, "Bus added");
+				}
 			}
 		});
 		addButton.setBackground(SystemColor.textInactiveText);
@@ -98,7 +101,7 @@ public class AddBus extends JDialog {
 		contentPanel.add(addButton);
 	}
 
-	private String nullToEmpty(String s) {
+	private String emptyToNull(String s) {
 		if (s.isEmpty()) {
 			return null;
 		}

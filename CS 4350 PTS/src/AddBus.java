@@ -39,6 +39,7 @@ public class AddBus extends JDialog {
 	 */
 	public AddBus(Connection con) {
 
+		JOptionPane message = new JOptionPane(null);
 		BusController bc = new BusController(con);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 

@@ -39,6 +39,7 @@ public class AddDriver extends JDialog {
 	 */
 	public AddDriver(Connection con) {
 
+		JOptionPane message = new JOptionPane(null);
 		setModalityType(ModalityType.APPLICATION_MODAL); // stops main menu from being used
 		DriverController dc = new DriverController(con);
 
@@ -86,7 +87,6 @@ public class AddDriver extends JDialog {
 				String driverName = nullToEmpty(driverNameTextField.getText());
 				String telephoneNumber = nullToEmpty(telephoneNumberTextField.getText());
 				dc.addDriver(driverName, telephoneNumber);
-				JOptionPane message = new JOptionPane(null);
 				message.showMessageDialog(null, "Driver added");
 			}
 		});

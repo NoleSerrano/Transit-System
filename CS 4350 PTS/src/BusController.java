@@ -37,16 +37,15 @@ public class BusController {
 		}
 	}
 
-	public boolean deleteBus(int busID) {
+	public int deleteBus(int busID) {
 		try {
 			PreparedStatement stmt = con.prepareStatement("DELETE FROM Bus WHERE BusID=?");
 			stmt.setInt(1, busID);
-			stmt.executeUpdate();
+			return stmt.executeUpdate(); // 0 not found, 1 found
 		} catch (Exception e) {
 			System.out.println(e);
-			return false;
 		}
-		return true;
+		return 0;
 	}
 
 	public String[] getBus(int busID) {
@@ -57,7 +56,7 @@ public class BusController {
 			String[] bus = new String[2];
 			rs.next();
 			bus[0] = rs.getString("Model");
-			bus[1] = String.valueOf(rs.getInt("Year"));
+			bus[1] = String.valueOf(rs.getObject("Year"));
 			return bus;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -94,7 +93,7 @@ public class BusController {
 			while (rs.next()) {
 				buses[i][0] = String.valueOf(rs.getInt("BusID"));
 				buses[i][1] = rs.getString("Model");
-				buses[i][2] = String.valueOf(rs.getInt("Year"));
+				buses[i][2] = String.valueOf(rs.getObject("Year"));
 				i++;
 			}
 			return buses;

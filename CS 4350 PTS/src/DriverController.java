@@ -38,16 +38,15 @@ public class DriverController {
 		}
 	}
 
-	public boolean deleteDriver(int driverID) {
+	public int deleteDriver(int driverID) {
 		try {
 			PreparedStatement stmt = con.prepareStatement("DELETE FROM Driver WHERE DriverID=?");
 			stmt.setInt(1, driverID);
-			stmt.executeUpdate();
+			return stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
-			return false;
 		}
-		return true;
+		return 0;
 	}
 
 	public String[] getDriver(int driverID) {

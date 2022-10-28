@@ -74,8 +74,8 @@ public class DeleteDriver extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String driverID = driverIDTextField.getText();
 				try {
-					boolean driverFound = dc.deleteDriver(Integer.valueOf(driverID));
-					if (!driverFound) {
+					int flag = dc.deleteDriver(Integer.valueOf(driverID));
+					if (flag == 0) {
 						message.showMessageDialog(null, "Driver not found");
 					} else {
 						message.showMessageDialog(null, "Driver deleted");

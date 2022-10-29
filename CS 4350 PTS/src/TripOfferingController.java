@@ -29,16 +29,16 @@ public class TripOfferingController {
 	}
 
 	public int addTripOffering(int tripNumber, Date date, Time scheduledStartTime, Time scheduledArrivalTime,
-			int driverID, int busID) {
+			int driverID, int busID) { // all values are given, so don't have to worry about getObject/setObject
 		try {
 			PreparedStatement stmt = con.prepareStatement(
 					"INSERT INTO TripOffering (TripNumber, Date, ScheduledStartTime, ScheduledArrivalTime, DriverID, BusID) VALUES (?, ?, ?, ?, ?, ?)");
 			stmt.setInt(1, tripNumber);
 			stmt.setDate(2, date);
 			stmt.setTime(3, scheduledStartTime);
-			stmt.setObject(4, scheduledArrivalTime, java.sql.Types.TIME);
-			stmt.setObject(5, driverID, java.sql.Types.INTEGER);
-			stmt.setObject(6, busID, java.sql.Types.INTEGER);
+			stmt.setTime(4, scheduledArrivalTime);
+			stmt.setInt(5, driverID);
+			stmt.setInt(6, busID);
 			return stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -70,9 +70,9 @@ public class TripOfferingController {
 			ResultSet rs = stmt.executeQuery();
 			String[] tripOffering = new String[3];
 			rs.next();
-			tripOffering[0] = String.valueOf(rs.getObject("ScheduledArrivalTime"));
-			tripOffering[1] = String.valueOf(rs.getObject("DriverID"));
-			tripOffering[2] = String.valueOf(rs.getObject("BusID"));
+			tripOffering[0] = String.valueOf(rs.getTime("ScheduledArrivalTime"));
+			tripOffering[1] = String.valueOf(rs.getInt("DriverID"));
+			tripOffering[2] = String.valueOf(rs.getInt("BusID"));
 			return tripOffering;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -88,9 +88,9 @@ public class TripOfferingController {
 			stmt.setInt(4, tripNumber);
 			stmt.setDate(5, date);
 			stmt.setTime(6, scheduledStartTime);
-			stmt.setObject(1, scheduledArrivalTime, java.sql.Types.TIME);
-			stmt.setObject(2, driverID, java.sql.Types.INTEGER);
-			stmt.setObject(3, busID, java.sql.Types.INTEGER);
+			stmt.setTime(1, scheduledArrivalTime);
+			stmt.setInt(2, driverID);
+			stmt.setInt(3, busID);
 			return stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -117,9 +117,9 @@ public class TripOfferingController {
 				tripOfferings[i][0] = String.valueOf(rs.getInt("TripNumber"));
 				tripOfferings[i][1] = String.valueOf(rs.getDate("Date"));
 				tripOfferings[i][2] = String.valueOf(rs.getTime("ScheduledStartTime"));
-				tripOfferings[i][3] = String.valueOf(rs.getObject("ScheduledArrivalTime"));
-				tripOfferings[i][4] = String.valueOf(rs.getObject("DriverID"));
-				tripOfferings[i][5] = String.valueOf(rs.getObject("BusID"));
+				tripOfferings[i][3] = String.valueOf(rs.getTime("ScheduledArrivalTime"));
+				tripOfferings[i][4] = String.valueOf(rs.getInt("DriverID"));
+				tripOfferings[i][5] = String.valueOf(rs.getInt("BusID"));
 				i++;
 			}
 			return tripOfferings;

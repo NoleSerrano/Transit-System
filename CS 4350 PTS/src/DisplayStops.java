@@ -18,7 +18,6 @@ public class DisplayStops extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tripNumberTextField;
-	private JTextField stopNumberTextField;
 
 	/**
 	 * Launch the application.
@@ -66,17 +65,6 @@ public class DisplayStops extends JDialog {
 		tripNumberTextField.setBounds(10, 60, 200, 25);
 		contentPanel.add(tripNumberTextField);
 		tripNumberTextField.setColumns(10);
-		
-		JLabel stopNumberLabel = new JLabel("Stop Number");
-		stopNumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		stopNumberLabel.setBounds(10, 90, 150, 17);
-		contentPanel.add(stopNumberLabel);
-		
-		stopNumberTextField = new JTextField();
-		stopNumberTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		stopNumberTextField.setColumns(10);
-		stopNumberTextField.setBounds(10, 110, 200, 25);
-		contentPanel.add(stopNumberTextField);
 		
 		JButton displayButton = new JButton("Display");
 		displayButton.addActionListener(new ActionListener() {

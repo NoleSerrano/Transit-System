@@ -1,13 +1,10 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -128,22 +125,10 @@ public class MainMenu extends JFrame {
 		displayStops.setBounds(480, 39, 140, 30);
 		contentPane.add(displayStops);
 
-		JButton driverButton = new JButton("Driver");
-		driverButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		driverButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		driverButton.setBackground(SystemColor.controlHighlight);
-		driverButton.setBounds(230, 80, 190, 30);
-		driverButton.setFocusPainted(false);
-		contentPane.add(driverButton);
-
 		JPopupMenu driverPM = new JPopupMenu();
 		driverPM.setBackground(Color.WHITE);
 		driverPM.setPopupSize(new Dimension(190, 90));
 		driverPM.setLabel("");
-		addPopup(driverButton, driverPM);
 
 		JMenuItem addDr = new JMenuItem("Add");
 		addDr.addActionListener(new ActionListener() {
@@ -187,17 +172,21 @@ public class MainMenu extends JFrame {
 		displayDr.setBackground(Color.WHITE);
 		driverPM.add(displayDr);
 
-		JButton tripOfferingButton = new JButton("Trip Offering");
-		tripOfferingButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tripOfferingButton.setFocusPainted(false);
-		tripOfferingButton.setBackground(SystemColor.controlHighlight);
-		tripOfferingButton.setBounds(30, 80, 190, 30);
-		contentPane.add(tripOfferingButton);
+		JButton driverButton = new JButton("Driver");
+		driverButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				driverPM.show(contentPane, driverButton.getX(), driverButton.getY() + 30);
+			}
+		});
+		driverButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		driverButton.setBackground(SystemColor.controlHighlight);
+		driverButton.setBounds(230, 80, 190, 30);
+		driverButton.setFocusPainted(false);
+		contentPane.add(driverButton);
 
 		JPopupMenu tripOfferingPM = new JPopupMenu();
 		tripOfferingPM.setBackground(Color.WHITE);
 		tripOfferingPM.setPopupSize(new Dimension(190, 90));
-		addPopup(tripOfferingButton, tripOfferingPM);
 
 		JMenuItem addTO = new JMenuItem("Add");
 		addTO.addActionListener(new ActionListener() {
@@ -242,17 +231,21 @@ public class MainMenu extends JFrame {
 		displayTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(displayTO);
 
-		JButton busButton = new JButton("Bus");
-		busButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		busButton.setFocusPainted(false);
-		busButton.setBackground(SystemColor.controlHighlight);
-		busButton.setBounds(430, 80, 190, 30);
-		contentPane.add(busButton);
+		JButton tripOfferingButton = new JButton("Trip Offering");
+		tripOfferingButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tripOfferingPM.show(contentPane, tripOfferingButton.getX(), tripOfferingButton.getY() + 30);
+			}
+		});
+		tripOfferingButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tripOfferingButton.setFocusPainted(false);
+		tripOfferingButton.setBackground(SystemColor.controlHighlight);
+		tripOfferingButton.setBounds(30, 80, 190, 30);
+		contentPane.add(tripOfferingButton);
 
 		JPopupMenu busPM = new JPopupMenu();
 		busPM.setBackground(Color.WHITE);
 		busPM.setPopupSize(new Dimension(190, 90));
-		addPopup(busButton, busPM);
 
 		JMenuItem addBu = new JMenuItem("Add");
 		addBu.addActionListener(new ActionListener() {
@@ -265,6 +258,7 @@ public class MainMenu extends JFrame {
 			}
 		});
 		addBu.setBackground(Color.WHITE);
+
 		busPM.add(addBu);
 
 		JMenuItem deleteBu = new JMenuItem("Delete");
@@ -297,6 +291,18 @@ public class MainMenu extends JFrame {
 		displayBu.setBackground(Color.WHITE);
 		busPM.add(displayBu);
 
+		JButton busButton = new JButton("Bus");
+		busButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				busPM.show(contentPane, busButton.getX(), busButton.getY() + 30);
+			}
+		});
+		busButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		busButton.setFocusPainted(false);
+		busButton.setBackground(SystemColor.controlHighlight);
+		busButton.setBounds(430, 80, 190, 30);
+		contentPane.add(busButton);
+
 		JPanel redPanel = new JPanel();
 		redPanel.setBackground(Color.RED);
 		redPanel.setBounds(30, 121, 590, 270);
@@ -320,26 +326,6 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBounds(430, 402, 190, 32);
 		contentPane.add(btnNewButton);
 
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), popup.getX(), popup.getY() + 30);
-			}
-		});
 	}
 
 	public static void createConnection() throws Exception {

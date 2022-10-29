@@ -118,6 +118,9 @@ public class UpdateDriver extends JDialog {
 		btnUpdate.setEnabled(false);
 		contentPanel.add(btnUpdate);
 
+		telephoneNumberLabel.setForeground(Color.LIGHT_GRAY);
+		driverNameLabel.setForeground(Color.LIGHT_GRAY);
+
 		btnSelect = new JButton("Select");
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,11 +132,18 @@ public class UpdateDriver extends JDialog {
 						} else { // item found
 							isSelected = true;
 							btnUpdate.setEnabled(true);
+
 							telephoneNumberTextField.setEnabled(true);
 							telephoneNumberTextField.setText(driver[1]);
+							telephoneNumberLabel.setForeground(Color.BLACK);
+
 							driverNameTextField.setEnabled(true);
 							driverNameTextField.setText(driver[0]);
+							driverNameLabel.setForeground(Color.BLACK);
+
 							driverIDTextField.setEnabled(false);
+							driverIDLabel.setForeground(Color.LIGHT_GRAY);
+
 							btnSelect.setText("Unselect");
 						}
 					} catch (Exception e2) {
@@ -143,12 +153,19 @@ public class UpdateDriver extends JDialog {
 				} else { // item not selected
 					isSelected = false;
 					btnUpdate.setEnabled(false);
+
 					telephoneNumberTextField.setEnabled(false);
 					telephoneNumberTextField.setText("");
+					telephoneNumberLabel.setForeground(Color.LIGHT_GRAY);
+
 					driverNameTextField.setEnabled(false);
 					driverNameTextField.setText("");
+					driverNameLabel.setForeground(Color.LIGHT_GRAY);
+
 					driverIDTextField.setEnabled(true);
 					driverIDTextField.setText("");
+					driverIDLabel.setForeground(Color.BLACK);
+
 					btnSelect.setText("Select");
 				}
 			}

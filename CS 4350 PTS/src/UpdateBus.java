@@ -135,6 +135,8 @@ public class UpdateBus extends JDialog {
 		btnUpdate.setEnabled(false);
 		yearTextField.setEnabled(false);
 		modelTextField.setEnabled(false);
+		yearLabel.setForeground(Color.LIGHT_GRAY);
+		modelLabel.setForeground(Color.LIGHT_GRAY);
 
 		btnSelect = new JButton("Select");
 		btnSelect.addActionListener(new ActionListener() {
@@ -147,12 +149,20 @@ public class UpdateBus extends JDialog {
 						} else { // item found
 							isSelected = true;
 							btnUpdate.setEnabled(true);
+							
 							yearTextField.setEnabled(true);
 							yearTextField.setText(stringNullToEmpty(bus[1]));
+							yearLabel.setForeground(Color.BLACK);
+							
 							modelTextField.setEnabled(true);
 							modelTextField.setText(bus[0]);
+							modelLabel.setForeground(Color.BLACK);
+							
 							busIDTextField.setEnabled(false);
+							busIDLabel.setForeground(Color.LIGHT_GRAY);
+							
 							btnSelect.setText("Unselect");
+							
 						}
 					} catch (Exception e2) {
 						System.out.println(e2);
@@ -161,13 +171,21 @@ public class UpdateBus extends JDialog {
 				} else { // item not selected
 					isSelected = false;
 					btnUpdate.setEnabled(false);
+					
 					yearTextField.setEnabled(false);
 					yearTextField.setText("");
+					yearLabel.setForeground(Color.LIGHT_GRAY);
+					
 					modelTextField.setEnabled(false);
 					modelTextField.setText("");
+					modelLabel.setForeground(Color.LIGHT_GRAY);
+					
 					busIDTextField.setEnabled(true);
 					busIDTextField.setText("");
+					busIDLabel.setForeground(Color.BLACK);
+					
 					btnSelect.setText("Select");
+
 				}
 			}
 		});

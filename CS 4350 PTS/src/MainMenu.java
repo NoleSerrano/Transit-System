@@ -71,20 +71,14 @@ public class MainMenu extends JFrame {
 		contentPane.add(titleLabel);
 
 		JButton recordData = new JButton("Record Data");
-		recordData.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
 
-				RecordData rd = new RecordData(con);
-				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
-				rd.setVisible(true);
-
-			}
-		});
 		recordData.setBackground(SystemColor.controlHighlight);
 		recordData.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		recordData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RecordData rd = new RecordData(con);
+				rd.setLocationRelativeTo(contentPane); // puts it in middle of this frame
+				rd.setVisible(true);
 			}
 		});
 		recordData.setBounds(30, 39, 140, 30);
@@ -92,18 +86,11 @@ public class MainMenu extends JFrame {
 		contentPane.add(recordData);
 
 		JButton weeklySchedule = new JButton("Weekly Schedule");
-		weeklySchedule.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
+		weeklySchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				WeeklySchedule ws = new WeeklySchedule(con);
 				ws.setLocationRelativeTo(contentPane);
 				ws.setVisible(true);
-
-			}
-		});
-		weeklySchedule.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		weeklySchedule.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -113,18 +100,11 @@ public class MainMenu extends JFrame {
 		contentPane.add(weeklySchedule);
 
 		JButton displaySchedules = new JButton("Display Schedules");
-		displaySchedules.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
+		displaySchedules.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				DisplaySchedules ds = new DisplaySchedules(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
-
-			}
-		});
-		displaySchedules.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		displaySchedules.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -134,18 +114,12 @@ public class MainMenu extends JFrame {
 		contentPane.add(displaySchedules);
 
 		JButton displayStops = new JButton("Display Stops");
-		displayStops.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
 
+		displayStops.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				DisplayStops ds = new DisplayStops(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
-
-			}
-		});
-		displayStops.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		displayStops.setFont(new Font("Tahoma", Font.PLAIN, 12));

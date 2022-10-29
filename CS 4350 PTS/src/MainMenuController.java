@@ -37,7 +37,7 @@ public class MainMenuController {
 	}
 
 	public String[][] getSchedules(String startLocationName, String destinationName, Date date) {
-
+		
 		return null;
 	}
 

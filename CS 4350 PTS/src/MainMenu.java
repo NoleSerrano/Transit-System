@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -169,6 +170,14 @@ public class MainMenu extends JFrame {
 		driverPM.add(updateDr);
 
 		JMenuItem displayDr = new JMenuItem("Display");
+		displayDr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				DriverController dc = new DriverController(con);
+				String[][] data = dc.getDrivers();
+				printData(data, "Drivers");
+			}
+		});
 		displayDr.setBackground(Color.WHITE);
 		driverPM.add(displayDr);
 
@@ -328,7 +337,7 @@ public class MainMenu extends JFrame {
 
 	}
 
-	public static void createConnection() throws Exception {
+	private static void createConnection() throws Exception {
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/pts";
@@ -341,6 +350,24 @@ public class MainMenu extends JFrame {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+
+	private static void printData(String[][] data, String dataTitle) { // testing
+		System.out.println("======= " + dataTitle + " =======");
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[0].length; j++) {
+				System.out.print(nullToEmpty(data[i][j]) + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+
+	private static String nullToEmpty(String s) {
+		if (s == null) {
+			return "";
+		}
+		return s;
 	}
 
 }

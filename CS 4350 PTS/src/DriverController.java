@@ -81,7 +81,8 @@ public class DriverController {
 
 	public String[][] getDrivers() {
 		try {
-			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Driver");
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Driver", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 
 			ResultSet rs = stmt.executeQuery();
 

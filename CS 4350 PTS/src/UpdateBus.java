@@ -148,7 +148,7 @@ public class UpdateBus extends JDialog {
 							isSelected = true;
 							btnUpdate.setEnabled(true);
 							yearTextField.setEnabled(true);
-							yearTextField.setText(nullToEmpty(bus[1]));
+							yearTextField.setText(stringNullToEmpty(bus[1]));
 							modelTextField.setEnabled(true);
 							modelTextField.setText(bus[0]);
 							busIDTextField.setEnabled(false);
@@ -185,7 +185,7 @@ public class UpdateBus extends JDialog {
 		return s;
 	}
 
-	private String nullToEmpty(String s) {
+	private String stringNullToEmpty(String s) { // should only be used for data types ints
 		if (s == "null") {
 			return "";
 		}

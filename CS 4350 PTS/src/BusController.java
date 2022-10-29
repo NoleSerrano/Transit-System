@@ -80,7 +80,8 @@ public class BusController {
 
 	public String[][] getBuses() {
 		try {
-			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Bus");
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Bus", ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -104,4 +105,6 @@ public class BusController {
 		}
 		return null;
 	}
+	
+	
 }

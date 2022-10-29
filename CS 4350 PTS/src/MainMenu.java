@@ -237,6 +237,14 @@ public class MainMenu extends JFrame {
 		tripOfferingPM.add(updateTO);
 
 		JMenuItem displayTO = new JMenuItem("Display");
+		displayTO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TripOfferingController toc = new TripOfferingController(con);
+				String[][] data = toc.getTripOfferings();
+				printData(data, "Trip Offerings");
+			}
+		});
 		displayTO.setBackground(Color.WHITE);
 		tripOfferingPM.add(displayTO);
 
@@ -297,6 +305,15 @@ public class MainMenu extends JFrame {
 		busPM.add(updateBu);
 
 		JMenuItem displayBu = new JMenuItem("Display");
+		displayBu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				BusController bu = new BusController(con);
+				String[][] data = bu.getBuses();
+				printData(data, "Buses");
+
+			}
+		});
 		displayBu.setBackground(Color.WHITE);
 		busPM.add(displayBu);
 
@@ -365,6 +382,13 @@ public class MainMenu extends JFrame {
 
 	private static String nullToEmpty(String s) {
 		if (s == null) {
+			return "";
+		}
+		return s;
+	}
+	
+	private String stringNullToEmpty(String s) { // should only be used for data types ints (going to need for bus year)
+		if (s == "null") {
 			return "";
 		}
 		return s;

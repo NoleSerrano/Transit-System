@@ -82,7 +82,7 @@ public class DriverController {
 	public String[][] getDrivers() {
 		try {
 			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Driver", ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
+					ResultSet.CONCUR_UPDATABLE); // 2 extra parameters allow cursor to move all over
 
 			ResultSet rs = stmt.executeQuery();
 

@@ -96,15 +96,12 @@ public class MainMenu extends JFrame {
 				ws.setVisible(true);
 				ws.addWindowListener(new WindowAdapter() {
 					@Override
-					public void windowClosing(WindowEvent e) {
-						System.out.println("Hello");
-
-						String[][] data = ws.getWeeklySchedule();
-//						String[][] data = ws.getWeeklySchedule();
-//						printData(data, "Weekly Schedule");
-//						System.out.println("Window closed");
+					public void windowClosed(WindowEvent e) {
 					}
 				});
+				// not sure why but it works after just calling the method
+				String[][] data = ws.getWeeklySchedule();
+				printData(data, "Weekly Schedule");
 
 			}
 		});

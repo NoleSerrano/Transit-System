@@ -98,7 +98,6 @@ public class WeeklySchedule extends JDialog {
 								"No weekly schedule for this driver found on this date");
 					} else {
 						ws = weeklySchedule;
-						printData(ws, "Weekly Schedule");
 						dispose();
 					}
 				} catch (Exception e2) {
@@ -112,24 +111,6 @@ public class WeeklySchedule extends JDialog {
 		displayButton.setBounds(35, 200, 150, 30);
 		displayButton.setFocusPainted(false);
 		contentPanel.add(displayButton);
-	}
-
-	private static void printData(String[][] data, String dataTitle) { // testing
-		System.out.println("======= " + dataTitle + " =======");
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[0].length; j++) {
-				System.out.print(nullToEmpty(data[i][j]) + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	private static String nullToEmpty(String s) {
-		if (s == null) {
-			return "";
-		}
-		return s;
 	}
 
 	public String[][] getWeeklySchedule() {

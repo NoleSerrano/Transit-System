@@ -93,6 +93,7 @@ public class DeleteTripOffering extends JDialog {
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		deleteButton.setBackground(SystemColor.textInactiveText);

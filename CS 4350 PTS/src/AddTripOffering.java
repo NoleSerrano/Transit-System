@@ -111,8 +111,14 @@ public class AddTripOffering extends JDialog {
 					Time scheduledArrivalTime = formatTime(scheduledArrivalTimeTextField.getText());
 					int driverID = Integer.valueOf(driverIDTextField.getText());
 					int busID = Integer.valueOf(busIDTextField.getText());
-					
-					toc.addTripOffering(tripNumber, date, scheduledStartTime, scheduledArrivalTime, driverID, busID);
+
+					int flag = toc.addTripOffering(tripNumber, date, scheduledStartTime, scheduledArrivalTime, driverID,
+							busID);
+					if (flag == 0) {
+						message.showMessageDialog(null, "Trip offering already added");
+					} else {
+						message.showMessageDialog(null, "Trip offering added");
+					}
 				} catch (Exception e2) {
 					System.out.println(e2);
 					message.showMessageDialog(null, "Invalid input");
@@ -158,7 +164,7 @@ public class AddTripOffering extends JDialog {
 		busIDLabel.setBounds(170, 140, 150, 17);
 		contentPanel.add(busIDLabel);
 	}
-	
+
 	private Time formatTime(String s) {
 		if (s.length() < 6) { // ex: "12:00"
 			return Time.valueOf(s + ":00");

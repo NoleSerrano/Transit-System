@@ -77,7 +77,7 @@ public class MainMenuController {
 				weeklySchedule[i][5] = String.valueOf(rs.getInt("BusID"));
 				i++;
 			}
-
+			return weeklySchedule;
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -89,7 +89,7 @@ public class MainMenuController {
 			PreparedStatement stmt = con.prepareStatement(
 					"SELECT StartLocationName, DestinationName, Date, ScheduledStartTime, ScheduledArrivalTime, DriverID, BusID FROM Trip T, TripOffering TOF WHERE T.TripNumber = TOF.TripNumber AND StartLocationName = ? AND DestinationName = ? AND DATE = ?",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			
+
 			stmt.setString(1, startLocationName);
 			stmt.setString(2, destinationName);
 			stmt.setDate(3, date);

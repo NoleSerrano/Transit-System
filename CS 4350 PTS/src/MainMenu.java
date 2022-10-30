@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -29,7 +31,7 @@ public class MainMenu extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
+
 	// https://www.randomlists.com/city-name-generator
 	// https://www.randomlists.com/random-addresses
 	public static void main(String[] args) {
@@ -92,6 +94,18 @@ public class MainMenu extends JFrame {
 				WeeklySchedule ws = new WeeklySchedule(con);
 				ws.setLocationRelativeTo(contentPane);
 				ws.setVisible(true);
+				ws.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						System.out.println("Hello");
+
+						String[][] data = ws.getWeeklySchedule();
+//						String[][] data = ws.getWeeklySchedule();
+//						printData(data, "Weekly Schedule");
+//						System.out.println("Window closed");
+					}
+				});
+
 			}
 		});
 		weeklySchedule.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -389,7 +403,7 @@ public class MainMenu extends JFrame {
 		}
 		return s;
 	}
-	
+
 	private String stringNullToEmpty(String s) { // should only be used for data types ints (going to need for bus year)
 		if (s == "null") {
 			return "";

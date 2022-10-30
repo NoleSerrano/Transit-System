@@ -76,13 +76,14 @@ public class DeleteBus extends JDialog {
 				try {
 					int flag = bc.deleteBus(Integer.valueOf(busID));
 					if (flag == 0) {
-						message.showMessageDialog(null, "Bus not found");
+						message.showMessageDialog(contentPanel, "Bus not found");
 					} else {
-						message.showMessageDialog(null, "Bus deleted");
+						message.showMessageDialog(contentPanel, "Bus deleted");
+						busIDTextField.setText("");
 					}
 				} catch (Exception e2) {
 					System.out.println(e2);
-					message.showMessageDialog(null, "Invalid input");
+					message.showMessageDialog(contentPanel, "Invalid input");
 				}
 			}
 		});

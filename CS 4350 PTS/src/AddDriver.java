@@ -87,7 +87,7 @@ public class AddDriver extends JDialog {
 				String driverName = emptyToNull(driverNameTextField.getText());
 				String telephoneNumber = emptyToNull(telephoneNumberTextField.getText());
 				dc.addDriver(driverName, telephoneNumber);
-				message.showMessageDialog(null, "Driver added");
+				message.showMessageDialog(contentPanel, "Driver added");
 			}
 		});
 		addButton.setBackground(SystemColor.textInactiveText);

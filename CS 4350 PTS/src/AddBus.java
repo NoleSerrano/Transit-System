@@ -88,9 +88,9 @@ public class AddBus extends JDialog {
 				String year = emptyToNull(yearTextField.getText());
 				int flag = bc.addBus(model, year);
 				if (flag == 0) {
-					message.showMessageDialog(null, "Invalid year");
+					message.showMessageDialog(contentPanel, "Invalid year");
 				} else {
-					message.showMessageDialog(null, "Bus added");
+					message.showMessageDialog(contentPanel, "Bus added");
 				}
 			}
 		});

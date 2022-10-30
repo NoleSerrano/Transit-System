@@ -108,7 +108,7 @@ public class UpdateDriver extends JDialog {
 				String driverName = emptyToNull(driverNameTextField.getText());
 				String telephoneNumber = emptyToNull(telephoneNumberTextField.getText());
 				dc.updateDriver(driverID, driverName, telephoneNumber);
-				message.showMessageDialog(null, "Driver updated");
+				message.showMessageDialog(contentPanel, "Driver updated");
 			}
 		});
 		btnUpdate.setForeground(Color.WHITE);
@@ -128,7 +128,7 @@ public class UpdateDriver extends JDialog {
 					try {
 						driver = dc.getDriver(Integer.valueOf(driverIDTextField.getText()));
 						if (driver == null) {
-							message.showMessageDialog(null, "No driver found");
+							message.showMessageDialog(contentPanel, "No driver found");
 						} else { // item found
 							isSelected = true;
 							btnUpdate.setEnabled(true);
@@ -148,7 +148,7 @@ public class UpdateDriver extends JDialog {
 						}
 					} catch (Exception e2) {
 						System.out.println(e2);
-						message.showMessageDialog(null, "Invalid input");
+						message.showMessageDialog(contentPanel, "Invalid input");
 					}
 				} else { // item not selected
 					isSelected = false;

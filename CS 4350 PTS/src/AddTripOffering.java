@@ -115,13 +115,13 @@ public class AddTripOffering extends JDialog {
 					int flag = toc.addTripOffering(tripNumber, date, scheduledStartTime, scheduledArrivalTime, driverID,
 							busID);
 					if (flag == 0) {
-						message.showMessageDialog(null, "Trip offering already added");
+						message.showMessageDialog(contentPanel, "Trip offering already added");
 					} else {
-						message.showMessageDialog(null, "Trip offering added");
+						message.showMessageDialog(contentPanel, "Trip offering added");
 					}
 				} catch (Exception e2) {
 					System.out.println(e2);
-					message.showMessageDialog(null, "Invalid input");
+					message.showMessageDialog(contentPanel, "Invalid input");
 				}
 			}
 		});

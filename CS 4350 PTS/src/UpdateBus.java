@@ -120,9 +120,9 @@ public class UpdateBus extends JDialog {
 				String year = emptyToNull(yearTextField.getText());
 				int flag = bc.updateBus(busID, model, year);
 				if (flag == 0) {
-					message.showMessageDialog(null, "Invalid year");
+					message.showMessageDialog(contentPanel, "Invalid year");
 				} else {
-					message.showMessageDialog(null, "Bus updated");
+					message.showMessageDialog(contentPanel, "Bus updated");
 				}
 			}
 		});
@@ -145,7 +145,7 @@ public class UpdateBus extends JDialog {
 					try {
 						bus = bc.getBus(Integer.valueOf(busIDTextField.getText()));
 						if (bus == null) {
-							message.showMessageDialog(null, "No bus found");
+							message.showMessageDialog(contentPanel, "No bus found");
 						} else { // item found
 							isSelected = true;
 							btnUpdate.setEnabled(true);
@@ -166,7 +166,7 @@ public class UpdateBus extends JDialog {
 						}
 					} catch (Exception e2) {
 						System.out.println(e2);
-						message.showMessageDialog(null, "Invalid input");
+						message.showMessageDialog(contentPanel, "Invalid input");
 					}
 				} else { // item not selected
 					isSelected = false;

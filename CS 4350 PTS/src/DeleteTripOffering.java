@@ -105,12 +105,15 @@ public class DeleteTripOffering extends JDialog {
 					Time scheduledStartTime = formatTime(scheduledStartTimeTextField.getText());
 					int flag = toc.deleteTripOffering(tripNumber, date, scheduledStartTime);
 					if (flag == 0) {
-						message.showMessageDialog(null, "Trip offering not found");
+						message.showMessageDialog(contentPanel, "Trip offering not found");
 					} else {
-						message.showMessageDialog(null, "Trip offering deleted");
+						message.showMessageDialog(contentPanel, "Trip offering deleted");
+						scheduledStartTimeTextField.setText("");
+						dateTextField.setText("");
+						tripNumberTextField.setText("");
 					}
 				} catch (Exception e2) {
-					message.showMessageDialog(null, "Invalid input");
+					message.showMessageDialog(contentPanel, "Invalid input");
 				}
 			}
 		});

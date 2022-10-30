@@ -76,13 +76,14 @@ public class DeleteDriver extends JDialog {
 				try {
 					int flag = dc.deleteDriver(Integer.valueOf(driverID));
 					if (flag == 0) {
-						message.showMessageDialog(null, "Driver not found");
+						message.showMessageDialog(contentPanel, "Driver not found");
 					} else {
-						message.showMessageDialog(null, "Driver deleted");
+						message.showMessageDialog(contentPanel, "Driver deleted");
+						driverIDTextField.setText("");
 					}
 				} catch (Exception e2) {
 					System.out.println(e2);
-					message.showMessageDialog(null, "Invalid input");
+					message.showMessageDialog(contentPanel, "Invalid input");
 				}
 
 			}

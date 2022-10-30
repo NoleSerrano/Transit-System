@@ -29,6 +29,9 @@ public class MainMenu extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	
+	// https://www.randomlists.com/city-name-generator
+	// https://www.randomlists.com/random-addresses
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

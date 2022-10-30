@@ -53,9 +53,11 @@ public class MainMenuController {
 	public String[][] getWeeklySchedule(int driverID, Date date) {
 		try {
 			PreparedStatement stmt = con.prepareStatement(
-					"SELECT * FROM TripOffering WHERE DriverID=1 AND (SELECT YEAR(Date)) = (SELECT YEAR(?)) AND (SELECT WEEK(Date)) = (SELECT WEEK(?))",
+					"SELECT * FROM TripOffering WHERE DriverID=? AND (SELECT YEAR(Date)) = (SELECT YEAR(?)) AND (SELECT WEEK(Date)) = (SELECT WEEK(?))",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
+			stmt.setInt(1, driverID);
+			stmt.setDate(2, date);
+			stmt.setDate(3, date);
 			ResultSet rs = stmt.executeQuery();
 
 			rs.last(); // cursor at end
@@ -85,9 +87,12 @@ public class MainMenuController {
 	public String[][] getSchedules(String startLocationName, String destinationName, Date date) {
 		try {
 			PreparedStatement stmt = con.prepareStatement(
-					"SELECT StartLocationName, DestinationName, Date, ScheduledStartTime, ScheduledArrivalTime, DriverID, BusID FROM Trip T, TripOffering TOF WHERE T.TripNumber = TOF.TripNumber AND StartionLocationName = ? AND DestinationName = ? AND DATE = ?",
+					"SELECT StartLocationName, DestinationName, Date, ScheduledStartTime, ScheduledArrivalTime, DriverID, BusID FROM Trip T, TripOffering TOF WHERE T.TripNumber = TOF.TripNumber AND StartLocationName = ? AND DestinationName = ? AND DATE = ?",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
+			
+			stmt.setString(1, startLocationName);
+			stmt.setString(2, destinationName);
+			stmt.setDate(3, date);
 			ResultSet rs = stmt.executeQuery();
 
 			rs.last(); // cursor at end
@@ -119,9 +124,9 @@ public class MainMenuController {
 	public String[][] getStops(int tripNumber) {
 		try {
 			PreparedStatement stmt = con.prepareStatement(
-					"SELECT TripNumber, StopNumber, SequenceNumber, DrivingTime FROM TripStopInfo WHERE TripStopInfo = ?",
+					"SELECT TripNumber, StopNumber, SequenceNumber, DrivingTime FROM TripStopInfo WHERE TripNumber = ?",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
+			stmt.setInt(1, tripNumber);
 			ResultSet rs = stmt.executeQuery();
 
 			rs.last(); // cursor at end

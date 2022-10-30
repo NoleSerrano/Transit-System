@@ -139,6 +139,13 @@ public class MainMenu extends JFrame {
 				DisplayStops ds = new DisplayStops(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
+				ds.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+					}
+				});
+				String[][] data = ds.getStops();
+				printData(data, "Stops");
 			}
 		});
 		displayStops.setFont(new Font("Tahoma", Font.PLAIN, 12));

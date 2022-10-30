@@ -119,6 +119,7 @@ public class RecordData extends JDialog {
 					int numberOfPassengersOut = Integer.valueOf(numberOfPassengersOutTextField.getText());
 					mmc.recordData(tripNumber, date, scheduledStartTime, stopNumber, actualStartTime, actualArrivalTime,
 							numberOfPassengersIn, numberOfPassengersOut);
+					message.showMessageDialog(contentPanel, "Data recorded");
 					dispose();
 				} catch (Exception e2) {
 					System.out.println(e2);

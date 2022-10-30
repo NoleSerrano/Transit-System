@@ -3,6 +3,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 
 public class MainMenuController {
@@ -50,14 +51,41 @@ public class MainMenuController {
 	}
 
 	public String[][] getWeeklySchedule(int driverID, Date date) {
+		try {
+			PreparedStatement stmt = con.prepareStatement(
+					"SELECT * FROM TripOffering WHERE DriverID=1 AND (SELECT YEAR(Date)) = (SELECT YEAR(?)) AND (SELECT WEEK(Date)) = (SELECT WEEK(?))",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
+			ResultSet rs = stmt.executeQuery();
+
+			rs.last(); // cursor at end
+			int rows = rs.getRow();
+			int cols = 6;
+			rs.beforeFirst(); // return cursor
+
+			String[][] weeklySchedule = new String[rows][cols];
+
+			int i = 0;
+			while (rs.next()) {
+				weeklySchedule[i][0] = String.valueOf(rs.getInt("TripNumber"));
+				weeklySchedule[i][1] = String.valueOf(rs.getDate("Date"));
+				weeklySchedule[i][2] = String.valueOf(rs.getTime("ScheduledArrivalTime"));
+				weeklySchedule[i][3] = String.valueOf(rs.getTime("ScheduledStartTime"));
+				weeklySchedule[i][4] = String.valueOf(rs.getInt("DriverID"));
+				weeklySchedule[i][5] = String.valueOf(rs.getInt("BusID"));
+				i++;
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return null;
 	}
 
 	public String[][] getSchedules(String startLocationName, String destinationName, Date date) {
 		try {
 			PreparedStatement stmt = con.prepareStatement(
-					"SELECT StartLocationName, DestinationName, Date, ScheduledStartTime, ScheduledArrivalTime, DriverID, BusID FROM Trip T, TripOffering TO WHERE T.TripNumber = TO.TripNumber AND StartionLocationName = ? AND DestinationName = ? AND DATE = ?",
+					"SELECT StartLocationName, DestinationName, Date, ScheduledStartTime, ScheduledArrivalTime, DriverID, BusID FROM Trip T, TripOffering TOF WHERE T.TripNumber = TOF.TripNumber AND StartionLocationName = ? AND DestinationName = ? AND DATE = ?",
 					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			ResultSet rs = stmt.executeQuery();
@@ -85,7 +113,7 @@ public class MainMenuController {
 			System.out.println(e);
 		}
 		return null;
-		
+
 	}
 
 	public String[][] getStops(int tripNumber) {

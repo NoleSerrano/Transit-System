@@ -93,7 +93,7 @@ public class WeeklySchedule extends JDialog {
 					int driverID = Integer.valueOf(driverIDTextField.getText());
 					Date date = Date.valueOf(dateTextField.getText());
 					String[][] weeklySchedule = mmc.getWeeklySchedule(driverID, date);
-					if (weeklySchedule == null) {
+					if (weeklySchedule.length == 0) {
 						message.showMessageDialog(contentPanel,
 								"No weekly schedule for this driver found on this date");
 					} else {

@@ -5,10 +5,13 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.Time;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -17,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 public class RecordData extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField startLocationNameTextField;
+	private JTextField tripNumberTextField;
 	private JTextField dateTextField;
 	private JTextField scheduledStartTimeTextField;
 	private JTextField actualStartTimeTextField;
@@ -48,9 +51,11 @@ public class RecordData extends JDialog {
 	 * Create the dialog.
 	 */
 	public RecordData(Connection con) {
-		
+
+		MainMenuController mmc = new MainMenuController(con);
+		JOptionPane message = new JOptionPane(null);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		
+
 		setBounds(100, 100, 346, 334);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,7 +63,7 @@ public class RecordData extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
-		
+
 		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Record Data of Trip Offering");
@@ -66,43 +71,59 @@ public class RecordData extends JDialog {
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		titleLabel.setBounds(10, 11, 310, 17);
 		contentPanel.add(titleLabel);
-		
+
 		JLabel tripNumberLabel = new JLabel("Trip Number");
 		tripNumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tripNumberLabel.setBounds(10, 40, 150, 17);
 		contentPanel.add(tripNumberLabel);
-		
-		startLocationNameTextField = new JTextField();
-		startLocationNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		startLocationNameTextField.setBounds(10, 60, 150, 25);
-		contentPanel.add(startLocationNameTextField);
-		startLocationNameTextField.setColumns(10);
-		
+
+		tripNumberTextField = new JTextField();
+		tripNumberTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tripNumberTextField.setBounds(10, 60, 150, 25);
+		contentPanel.add(tripNumberTextField);
+		tripNumberTextField.setColumns(10);
+
 		JLabel dateLabel = new JLabel("Date (YYYY-MM-DD)");
 		dateLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		dateLabel.setBounds(10, 90, 150, 17);
 		contentPanel.add(dateLabel);
-		
+
 		dateTextField = new JTextField();
 		dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		dateTextField.setColumns(10);
 		dateTextField.setBounds(10, 110, 150, 25);
 		contentPanel.add(dateTextField);
-		
+
 		JLabel scheduledStartTimeLabel = new JLabel("Scheduled Start Time");
 		scheduledStartTimeLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scheduledStartTimeLabel.setBounds(10, 140, 150, 17);
 		contentPanel.add(scheduledStartTimeLabel);
-		
+
 		scheduledStartTimeTextField = new JTextField();
 		scheduledStartTimeTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scheduledStartTimeTextField.setColumns(10);
 		scheduledStartTimeTextField.setBounds(10, 160, 150, 25);
 		contentPanel.add(scheduledStartTimeTextField);
-		
+
 		JButton recordButton = new JButton("Record");
 		recordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					int tripNumber = Integer.valueOf(tripNumberTextField.getText());
+					Date date = Date.valueOf(dateTextField.getText());
+					Time scheduledStartTime = formatTime(scheduledStartTimeTextField.getText());
+					int stopNumber = Integer.valueOf(stopNumberTextField.getText());
+					Time actualStartTime = formatTime(actualStartTimeTextField.getText());
+					Time actualArrivalTime = formatTime(actualArrivalTimeTextField.getText());
+					int numberOfPassengersIn = Integer.valueOf(numberOfPassengersInTextField.getText());
+					int numberOfPassengersOut = Integer.valueOf(numberOfPassengersOutTextField.getText());
+					mmc.recordData(tripNumber, date, scheduledStartTime, stopNumber, actualStartTime, actualArrivalTime,
+							numberOfPassengersIn, numberOfPassengersOut);
+					dispose();
+				} catch (Exception e2) {
+					System.out.println(e2);
+					message.showMessageDialog(contentPanel, "Invalid input");
+				}
 			}
 		});
 		recordButton.setBackground(SystemColor.textInactiveText);
@@ -110,61 +131,68 @@ public class RecordData extends JDialog {
 		recordButton.setBounds(90, 250, 150, 30);
 		recordButton.setFocusPainted(false);
 		contentPanel.add(recordButton);
-		
+
 		actualStartTimeTextField = new JTextField();
 		actualStartTimeTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		actualStartTimeTextField.setColumns(10);
 		actualStartTimeTextField.setBounds(170, 60, 150, 25);
 		contentPanel.add(actualStartTimeTextField);
-		
+
 		actualArrivalTimeTextField = new JTextField();
 		actualArrivalTimeTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		actualArrivalTimeTextField.setColumns(10);
 		actualArrivalTimeTextField.setBounds(170, 110, 150, 25);
 		contentPanel.add(actualArrivalTimeTextField);
-		
+
 		numberOfPassengersInTextField = new JTextField();
 		numberOfPassengersInTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		numberOfPassengersInTextField.setColumns(10);
 		numberOfPassengersInTextField.setBounds(170, 160, 150, 25);
 		contentPanel.add(numberOfPassengersInTextField);
-		
+
 		actualStartTimeLabel = new JLabel("Actual Start Time");
 		actualStartTimeLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		actualStartTimeLabel.setBounds(170, 40, 150, 17);
 		contentPanel.add(actualStartTimeLabel);
-		
+
 		actualArrivalTimeLabel = new JLabel("Actual Arrival Time");
 		actualArrivalTimeLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		actualArrivalTimeLabel.setBounds(170, 90, 150, 17);
 		contentPanel.add(actualArrivalTimeLabel);
-		
+
 		numberOfPassengersInLabel = new JLabel("Number of Passengers In");
 		numberOfPassengersInLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		numberOfPassengersInLabel.setBounds(170, 140, 150, 17);
 		contentPanel.add(numberOfPassengersInLabel);
-		
+
 		stopNumberLabel = new JLabel("Stop Number");
 		stopNumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		stopNumberLabel.setBounds(10, 190, 150, 17);
 		contentPanel.add(stopNumberLabel);
-		
+
 		stopNumberTextField = new JTextField();
 		stopNumberTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		stopNumberTextField.setColumns(10);
 		stopNumberTextField.setBounds(10, 210, 150, 25);
 		contentPanel.add(stopNumberTextField);
-		
+
 		numberOfPassengersOutLabel = new JLabel("Number of Passengers Out");
 		numberOfPassengersOutLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		numberOfPassengersOutLabel.setBounds(170, 190, 150, 17);
 		contentPanel.add(numberOfPassengersOutLabel);
-		
+
 		numberOfPassengersOutTextField = new JTextField();
 		numberOfPassengersOutTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		numberOfPassengersOutTextField.setColumns(10);
 		numberOfPassengersOutTextField.setBounds(170, 210, 150, 25);
 		contentPanel.add(numberOfPassengersOutTextField);
-		
+
+	}
+
+	private Time formatTime(String s) {
+		if (s.length() < 6) { // ex: "12:00"
+			return Time.valueOf(s + ":00");
+		}
+		return Time.valueOf(s);
 	}
 }

@@ -5,10 +5,12 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -20,6 +22,8 @@ public class DisplaySchedules extends JDialog {
 	private JTextField startLocationNameTextField;
 	private JTextField destinationNameTextField;
 	private JTextField dateTextField;
+
+	public String[][] sch;
 
 	/**
 	 * Launch the application.
@@ -38,9 +42,11 @@ public class DisplaySchedules extends JDialog {
 	 * Create the dialog.
 	 */
 	public DisplaySchedules(Connection con) {
-		
+
+		MainMenuController mmc = new MainMenuController(con);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		
+		JOptionPane message = new JOptionPane(null);
+
 		setBounds(100, 100, 236, 284);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,7 +54,7 @@ public class DisplaySchedules extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
-		
+
 		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Display Schedules");
@@ -93,6 +99,20 @@ public class DisplaySchedules extends JDialog {
 		JButton displayButton = new JButton("Display");
 		displayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					String startLocationName = startLocationNameTextField.getText();
+					String destinationName = destinationNameTextField.getText();
+					Date date = Date.valueOf(dateTextField.getText());
+					sch = mmc.getSchedules(startLocationName, destinationName, date);
+					if (sch.length == 0) {
+						message.showMessageDialog(contentPanel, "No schedules were found with the given input");
+					} else {
+						dispose();
+					}
+				} catch (Exception e2) {
+					System.out.println(e2);
+					message.showMessageDialog(contentPanel, "Invalid input");
+				}
 			}
 		});
 		displayButton.setBackground(SystemColor.textInactiveText);
@@ -100,5 +120,9 @@ public class DisplaySchedules extends JDialog {
 		displayButton.setBounds(35, 200, 150, 30);
 		displayButton.setFocusPainted(false);
 		contentPanel.add(displayButton);
+	}
+
+	public String[][] getSchedules() {
+		return sch;
 	}
 }

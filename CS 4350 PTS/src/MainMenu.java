@@ -117,6 +117,13 @@ public class MainMenu extends JFrame {
 				DisplaySchedules ds = new DisplaySchedules(con);
 				ds.setLocationRelativeTo(contentPane); // puts it in middle of this frame
 				ds.setVisible(true);
+				ds.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+					}
+				});
+				String[][] data = ds.getSchedules();
+				printData(data, "Schedules");
 			}
 		});
 		displaySchedules.setFont(new Font("Tahoma", Font.PLAIN, 12));

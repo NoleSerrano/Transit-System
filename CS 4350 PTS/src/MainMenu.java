@@ -70,13 +70,13 @@ public class MainMenu extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null); // centers frame to the screen
-		
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(30, 121, 590, 270);
-				contentPane.add(scrollPane);
-				
-						table = new JTable();
-						scrollPane.setViewportView(table);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(30, 121, 590, 270);
+		contentPane.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
 		JLabel titleLabel = new JLabel("Transit System");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -440,7 +440,7 @@ public class MainMenu extends JFrame {
 //		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 //		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.setDefaultEditor(Object.class, null); // makes cells uneditable
-		table.setFillsViewportHeight(true); // fills in empty rows
+		table.setFillsViewportHeight(false); // fills in empty rows if set to true
 		scrollPane.setViewportView(table);
 	}
 

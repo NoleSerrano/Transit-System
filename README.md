@@ -2,7 +2,7 @@
 Transit System with GUI and database connectivity.
 
 ## Specifications
-Use the following tables to design and implement the Pomona Transit System using any
+Use the following tables to design and implement the Transit System using any
 database product and JDBC.
 
 - **Trip** (<ins>TripNumber</ins>, StartLocationName, DestinationName)

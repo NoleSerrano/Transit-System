@@ -113,7 +113,10 @@ public class MainMenu extends JFrame {
 				// not sure why but it works after just calling the method
 				if (ws.getFlag() == 1) {
 					String[][] data = ws.getWeeklySchedule();
-					printData(data, "Weekly Schedule");
+					String[] attributes = { "Trip Number", "Date", "Scheduled Arrival Time", "Scheduled Start Time",
+							"Driver ID", "Bus ID" };
+					displayTable2(data, attributes);
+					displayJTable(data, attributes, scrollPane);
 				}
 			}
 		});
@@ -136,7 +139,10 @@ public class MainMenu extends JFrame {
 				});
 				if (ds.getFlag() == 1) {
 					String[][] data = ds.getSchedules();
-					printData(data, "Schedules");
+					String[] attributes = { "Start Location Name", "Destination Name", "Date", "Scheduled Start Time",
+							"Scheduled Arrival Time", "Driver ID", "Bus ID" };
+					displayTable2(data, attributes);
+					displayJTable(data, attributes, scrollPane);
 				}
 			}
 		});
@@ -160,7 +166,9 @@ public class MainMenu extends JFrame {
 				});
 				if (ds.getFlag() == 1) {
 					String[][] data = ds.getStops();
-					printData(data, "Stops");
+					String[] attributes = { "Trip Number", "Stop Number", "Sequence Number", "Driving Time" };
+					displayTable2(data, attributes);
+					displayJTable(data, attributes, scrollPane);
 				}
 			}
 		});
@@ -446,24 +454,6 @@ public class MainMenu extends JFrame {
 		table.setDefaultEditor(Object.class, null); // makes cells uneditable
 		table.setFillsViewportHeight(false); // fills in empty rows if set to true
 		scrollPane.setViewportView(table);
-	}
-
-	private void displayTable(String[][] data, String[] attributes, String dataTitle) { // testing (will be for JTable),
-																						// also simple table, no spaces
-																						// appended to have nice
-																						// formatting
-		System.out.println("======= " + dataTitle + " =======");
-		for (int i = 0; i < attributes.length; i++) { // attributes row
-			System.out.print(attributes[i] + " ");
-		}
-		System.out.println();
-		for (int i = 0; i < data.length; i++) { // data matrix
-			for (int j = 0; j < data[0].length; j++) {
-				System.out.print(nullToEmpty(data[i][j]) + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
 	}
 
 	private void displayTable2(String[][] data, String[] attributes) { // nicer format

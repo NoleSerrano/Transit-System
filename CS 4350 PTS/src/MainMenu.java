@@ -428,6 +428,9 @@ public class MainMenu extends JFrame {
 	}
 
 	private void displayJTable(String[][] data, String[] attributes, JScrollPane scrollPane) {
+		table = new JTable(data, attributes);
+		table.setRowSelectionAllowed(false);
+		table.setShowGrid(false);
 		table.setRowSelectionAllowed(false);
 		table.setShowGrid(false);
 		table.setTableHeader(null); // removes column header

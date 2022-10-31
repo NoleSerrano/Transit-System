@@ -1,24 +1,23 @@
 # Transit-System
-Transit System with GUI and database connectivity
+Transit System with GUI and database connectivity.
 
-# Specifications
+## Specifications
 Use the following tables to design and implement the Pomona Transit System using any
-database product and JDBC. He has the ER diagram on canvas
+database product and JDBC.
 
-- Trip (<ins>TripNumber</ins>, StartLocationName, DestinationName)
-- TripOffering (<ins>TripNumber, Date, ScheduledStartTime</ins>, SecheduledArrivalTime, DriverID, BusID)
-- Bus (<ins>BusID</ins>, Model, Year)
-- Driver (<ins>DriverID</ins>, DriverName, DriverTelephoneNumber)
-- Stop (<ins>StopNumber</ins>, StopAddress)
-- ActualTripStopInfo (<ins>TripNumber, Date, ScheduledStartTime, StopNumber</ins>, SecheduledArrivalTime, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn,
--  NumberOf PassengerOut)
--  TripStopInfo (<ins>TripNumber, StopNumber</ins>, SequenceNumber, DrivingTime)
+- **Trip** (<ins>TripNumber</ins>, StartLocationName, DestinationName)
+- **TripOffering** (<ins>TripNumber, Date, ScheduledStartTime</ins>, SecheduledArrivalTime, DriverID, BusID)
+- **Bus** (<ins>BusID</ins>, Model, Year)
+- **Driver** (<ins>DriverID</ins>, DriverName, DriverTelephoneNumber)
+- **Stop** (<ins>StopNumber</ins>, StopAddress)
+- **ActualTripStopInfo** (<ins>TripNumber, Date, ScheduledStartTime, StopNumber</ins>, SecheduledArrivalTime, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn, NumberOf PassengerOut)
+- **TripStopInfo** (<ins>TripNumber, StopNumber</ins>, SequenceNumber, DrivingTime)
 
 The system should deal with at least the following transactions:
 1. Display the schedule of all trips for a given StartLocationName and DestinationName, and Date. In addition to these attributes, the schedule includes: ScheduledStartTime, ScheduledArrivalTime , DriverID, and BusID. // from tables Trip and TripOffering virtual table
 2. Edit the schedule i.e. edit the table of Trip Offering as follows:
 - Delete a trip offering specified by Trip#, Date, and ScheduledStartTime;
-- Add a set of trip offerings assuming the values of all attributes are given (the software asks if you have more trips to enter) ;
+- Add a set of trip offerings assuming the values of all attributes are given (the software asks if you have more trips to enter);
 - Change the driver for a given Trip offering (i.e given TripNumber, Date, ScheduledStartTime);
 - Change the bus for a given Trip offering.
 3. Display the stops of a given trip (i.e. the attributes of the table TripStopInfo).

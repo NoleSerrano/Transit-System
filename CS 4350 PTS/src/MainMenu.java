@@ -290,7 +290,7 @@ public class MainMenu extends JFrame {
 				String[][] data = toc.getTripOfferings();
 				String[] attributes = { "Trip Number", "Date", "Scheduled Start Time", "Scheduled Arrival Time",
 						"Driver ID", "Bus ID" };
-				printData(data, "Trip Offerings");
+				displayTable2(data, attributes);
 				displayJTable(data, attributes, scrollPane);
 			}
 		});
@@ -467,19 +467,21 @@ public class MainMenu extends JFrame {
 	}
 
 	private void displayTable2(String[][] data, String[] attributes) { // nicer format
-		String[] lcv = largestColumnValues(data, attributes);
-		for (int i = 0; i < attributes.length; i++) { // attributes row
-			System.out.print("\033[4;2m" + appendSpaces(attributes[i], lcv[i]) + " | "); // 033.. for underlining
-		}
-		System.out.print("\033[0m"); // stops underlining
-		System.out.println();
-		for (int i = 0; i < data.length; i++) { // data matrix
-			for (int j = 0; j < data[0].length; j++) {
-				System.out.print(appendSpaces(nullToEmpty(data[i][j]), lcv[j]) + " | ");
+		if (data.length > 0) {
+			String[] lcv = largestColumnValues(data, attributes);
+			for (int i = 0; i < attributes.length; i++) { // attributes row
+				System.out.print("\033[4;2m" + appendSpaces(attributes[i], lcv[i]) + " | "); // 033.. for underlining
+			}
+			System.out.print("\033[0m"); // stops underlining
+			System.out.println();
+			for (int i = 0; i < data.length; i++) { // data matrix
+				for (int j = 0; j < data[0].length; j++) {
+					System.out.print(appendSpaces(nullToEmpty(data[i][j]), lcv[j]) + " | ");
+				}
+				System.out.println();
 			}
 			System.out.println();
 		}
-		System.out.println();
 	}
 
 	private String[] largestColumnValues(String[][] data, String[] attributes) { // searches data gets largest and sees

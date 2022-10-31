@@ -203,7 +203,8 @@ public class MainMenu extends JFrame {
 
 				DriverController dc = new DriverController(con);
 				String[][] data = dc.getDrivers();
-				printData(data, "Drivers");
+				String[] attributes = { "Driver ID", "Driver Name", "Telephone Number" };
+				displayTable2(data, attributes, "Drivers");
 			}
 		});
 		displayDr.setBackground(Color.WHITE);
@@ -420,6 +421,66 @@ public class MainMenu extends JFrame {
 			return "";
 		}
 		return s;
+	}
+
+	private void displayTable(String[][] data, String[] attributes, String dataTitle) { // testing (will be for JTable),
+																						// also simple table, no spaces
+																						// appended to have nice
+																						// formatting
+		System.out.println("======= " + dataTitle + " =======");
+		for (int i = 0; i < attributes.length; i++) { // attributes row
+			System.out.print(attributes[i] + " ");
+		}
+		System.out.println();
+		for (int i = 0; i < data.length; i++) { // data matrix
+			for (int j = 0; j < data[0].length; j++) {
+				System.out.print(nullToEmpty(data[i][j]) + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+
+	private void displayTable2(String[][] data, String[] attributes, String dataTitle) { // nicer format
+		System.out.println("======= " + dataTitle + " =======");
+		String[] lcv = largestColumnValues(data, attributes);
+		for (int i = 0; i < attributes.length; i++) { // attributes row
+			System.out.print(appendSpaces(attributes[i], lcv[i]) + " ");
+		}
+		System.out.println();
+		for (int i = 0; i < data.length; i++) { // data matrix
+			for (int j = 0; j < data[0].length; j++) {
+				System.out.print(appendSpaces(nullToEmpty(data[i][j]), lcv[j]) + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+
+	private String[] largestColumnValues(String[][] data, String[] attributes) { // searches data gets largest and sees
+																					// if that's bigger than respective
+																					// attribute
+		String[] largestColumnValues = new String[attributes.length];
+		for (int i = 0; i < data[0].length; i++) { // rows
+			String largestValue = attributes[i];
+			for (int j = 0; j < data.length; j++) { // cols, compare data values
+				String dataValue = data[j][i];
+				if (dataValue.length() > largestValue.length()) {
+					largestValue = dataValue;
+				}
+			}
+			largestColumnValues[i] = largestValue;
+		}
+		return largestColumnValues;
+	}
+
+	private String appendSpaces(String a, String b) { // appends spaces to a to match b length (helps with formatting
+														// table)
+		int spacesToAdd = b.length() - a.length();
+		for (int i = 0; i < spacesToAdd; i++) {
+			a += " ";
+		}
+		return a;
 	}
 
 }

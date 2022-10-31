@@ -5,14 +5,14 @@ Transit System with GUI and database connectivity
 Use the following tables to design and implement the Pomona Transit System using any
 database product and JDBC. He has the ER diagram on canvas
 
-Trip (TripNumber, StartLocationName, DestinationName)
-TripOffering (TripNumber, Date, ScheduledStartTime, SecheduledArrivalTime, DriverID, BusID)
-Bus (BusID, Model, Year)
-Driver (DriverID, DriverName, DriverTelephoneNumber)
-Stop (StopNumber, StopAddress)
-ActualTripStopInfo (TripNumber, Date, ScheduledStartTime, StopNumber, SecheduledArrivalTime, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn,
-NumberOf PassengerOut)
-TripStopInfo (TripNumber, StopNumber, SequenceNumber, DrivingTime)
+- Trip (TripNumber, StartLocationName, DestinationName)
+- TripOffering (TripNumber, Date, ScheduledStartTime, SecheduledArrivalTime, DriverID, BusID)
+- Bus (BusID, Model, Year)
+- Driver (DriverID, DriverName, DriverTelephoneNumber)
+- Stop (StopNumber, StopAddress)
+- ActualTripStopInfo (TripNumber, Date, ScheduledStartTime, StopNumber, SecheduledArrivalTime, ActualStartTime, ActualArrivalTime, NumberOfPassengerIn,
+-  NumberOf PassengerOut)
+-  TripStopInfo (TripNumber, StopNumber, SequenceNumber, DrivingTime)
 
 The system should deal with at least the following transactions:
 1. Display the schedule of all trips for a given StartLocationName and DestinationName, and Date. In addition to these attributes, the schedule includes: ScheduledStartTime, ScheduledArrivalTime , DriverID, and BusID. // from tables Trip and TripOffering virtual table

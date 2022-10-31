@@ -23,7 +23,8 @@ public class DisplaySchedules extends JDialog {
 	private JTextField destinationNameTextField;
 	private JTextField dateTextField;
 
-	public String[][] sch;
+	private String[][] sch;
+	private int flag = 0;
 
 	/**
 	 * Launch the application.
@@ -106,7 +107,8 @@ public class DisplaySchedules extends JDialog {
 					sch = mmc.getSchedules(startLocationName, destinationName, date);
 					if (sch.length == 0) {
 						message.showMessageDialog(contentPanel, "No schedules were found with the given input");
-					} else {
+					} else { // success
+						flag = 1;
 						dispose();
 					}
 				} catch (Exception e2) {
@@ -124,5 +126,9 @@ public class DisplaySchedules extends JDialog {
 
 	public String[][] getSchedules() {
 		return sch;
+	}
+
+	public int getFlag() {
+		return flag;
 	}
 }

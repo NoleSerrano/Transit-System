@@ -20,7 +20,8 @@ public class DisplayStops extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tripNumberTextField;
 
-	public String[][] stops;
+	private String[][] stops;
+	private int flag = 0;
 
 	/**
 	 * Launch the application.
@@ -79,7 +80,8 @@ public class DisplayStops extends JDialog {
 					stops = mmc.getStops(tripNumber);
 					if (stops.length == 0) {
 						message.showMessageDialog(contentPanel, "No stops found with the trip number");
-					} else {
+					} else { // success
+						flag = 1;
 						dispose();
 					}
 				} catch (Exception e2) {
@@ -97,5 +99,9 @@ public class DisplayStops extends JDialog {
 
 	public String[][] getStops() {
 		return stops;
+	}
+
+	public int getFlag() {
+		return flag;
 	}
 }

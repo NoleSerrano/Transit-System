@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -103,9 +104,10 @@ public class MainMenu extends JFrame {
 					}
 				});
 				// not sure why but it works after just calling the method
-				String[][] data = ws.getWeeklySchedule();
-				printData(data, "Weekly Schedule");
-
+				if (ws.getFlag() == 1) {
+					String[][] data = ws.getWeeklySchedule();
+					printData(data, "Weekly Schedule");
+				}
 			}
 		});
 		weeklySchedule.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -125,8 +127,10 @@ public class MainMenu extends JFrame {
 					public void windowClosed(WindowEvent e) {
 					}
 				});
-				String[][] data = ds.getSchedules();
-				printData(data, "Schedules");
+				if (ds.getFlag() == 1) {
+					String[][] data = ds.getSchedules();
+					printData(data, "Schedules");
+				}
 			}
 		});
 		displaySchedules.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -147,8 +151,10 @@ public class MainMenu extends JFrame {
 					public void windowClosed(WindowEvent e) {
 					}
 				});
-				String[][] data = ds.getStops();
-				printData(data, "Stops");
+				if (ds.getFlag() == 1) {
+					String[][] data = ds.getStops();
+					printData(data, "Stops");
+				}
 			}
 		});
 		displayStops.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -371,11 +377,11 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBackground(Color.DARK_GRAY);
 		btnNewButton.setBounds(430, 402, 190, 32);
 		contentPane.add(btnNewButton);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 121, 590, 270);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
@@ -421,8 +427,17 @@ public class MainMenu extends JFrame {
 		return s;
 	}
 
-	private void displayJTable() {
-
+	private void displayJTable(String[][] data, String[] attributes, JScrollPane scrollPane) {
+		table.setRowSelectionAllowed(false);
+		table.setShowGrid(false);
+		table.setTableHeader(null); // removes column header
+		scrollPane.setColumnHeader(null); // removes column header
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+//		table.getColumnModel().getColumn(0).setPreferredWidth(30);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.setDefaultEditor(Object.class, null); // makes cells uneditable
+		table.setFillsViewportHeight(true); // fills in empty rows
+		scrollPane.setViewportView(table);
 	}
 
 	private void displayTable(String[][] data, String[] attributes, String dataTitle) { // testing (will be for JTable),

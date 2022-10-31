@@ -23,6 +23,7 @@ public class WeeklySchedule extends JDialog {
 	private JTextField dateTextField;
 
 	private String[][] ws = null;
+	private int flag = 0;
 
 	// private String[][] weeklySchedule;
 
@@ -96,7 +97,8 @@ public class WeeklySchedule extends JDialog {
 					if (ws.length == 0) {
 						message.showMessageDialog(contentPanel,
 								"No weekly schedule for this driver found on this date");
-					} else {
+					} else { // success
+						flag = 1;
 						dispose();
 					}
 				} catch (Exception e2) {
@@ -114,5 +116,9 @@ public class WeeklySchedule extends JDialog {
 
 	public String[][] getWeeklySchedule() {
 		return ws;
+	}
+	
+	public int getFlag() {
+		return flag;
 	}
 }

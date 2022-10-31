@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class MainMenu extends JFrame {
 
@@ -27,6 +29,7 @@ public class MainMenu extends JFrame {
 
 	private static Connection con;
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -358,21 +361,9 @@ public class MainMenu extends JFrame {
 		busButton.setBounds(430, 80, 190, 30);
 		contentPane.add(busButton);
 
-		JPanel redPanel = new JPanel();
-		redPanel.setBackground(Color.RED);
-		redPanel.setBounds(30, 121, 590, 270);
-		contentPane.add(redPanel);
-
-		JPanel yellowPanel = new JPanel();
-		yellowPanel.setBackground(Color.YELLOW);
-		yellowPanel.setBounds(30, 121, 590, 270);
-		contentPane.add(yellowPanel);
-
 		JButton btnNewButton = new JButton("Swap Panels");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				redPanel.setVisible(false);
-				yellowPanel.setVisible(true);
 			}
 		});
 		btnNewButton.setForeground(Color.WHITE);
@@ -380,6 +371,13 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBackground(Color.DARK_GRAY);
 		btnNewButton.setBounds(430, 402, 190, 32);
 		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(30, 121, 590, 270);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
 	}
 
@@ -421,6 +419,10 @@ public class MainMenu extends JFrame {
 			return "";
 		}
 		return s;
+	}
+
+	private void displayJTable() {
+
 	}
 
 	private void displayTable(String[][] data, String[] attributes, String dataTitle) { // testing (will be for JTable),
@@ -483,5 +485,4 @@ public class MainMenu extends JFrame {
 		}
 		return a;
 	}
-
 }

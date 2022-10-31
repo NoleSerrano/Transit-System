@@ -220,7 +220,7 @@ public class MainMenu extends JFrame {
 				DriverController dc = new DriverController(con);
 				String[][] data = dc.getDrivers();
 				String[] attributes = { "Driver ID", "Driver Name", "Telephone Number" };
-				displayTable2(data, attributes, "Drivers");
+				displayTable2(data, attributes);
 				displayJTable(data, attributes, scrollPane);
 			}
 		});
@@ -288,7 +288,10 @@ public class MainMenu extends JFrame {
 
 				TripOfferingController toc = new TripOfferingController(con);
 				String[][] data = toc.getTripOfferings();
+				String[] attributes = { "Trip Number", "Date", "Scheduled Start Time", "Scheduled Arrival Time",
+						"Driver ID", "Bus ID" };
 				printData(data, "Trip Offerings");
+				displayJTable(data, attributes, scrollPane);
 			}
 		});
 		displayTO.setBackground(Color.WHITE);
@@ -356,8 +359,9 @@ public class MainMenu extends JFrame {
 
 				BusController bu = new BusController(con);
 				String[][] data = bu.getBuses();
-				printData(data, "Buses");
-
+				String[] attributes = { "Bus ID", "Model", "Year" };
+				displayTable2(data, attributes);
+				displayJTable(data, attributes, scrollPane);
 			}
 		});
 		displayBu.setBackground(Color.WHITE);
@@ -462,8 +466,7 @@ public class MainMenu extends JFrame {
 		System.out.println();
 	}
 
-	private void displayTable2(String[][] data, String[] attributes, String dataTitle) { // nicer format
-		System.out.println("======= " + dataTitle + " =======");
+	private void displayTable2(String[][] data, String[] attributes) { // nicer format
 		String[] lcv = largestColumnValues(data, attributes);
 		for (int i = 0; i < attributes.length; i++) { // attributes row
 			System.out.print("\033[4;2m" + appendSpaces(attributes[i], lcv[i]) + " | "); // 033.. for underlining

@@ -69,7 +69,5 @@
 /UpdateDriver$3.class
 /UpdateBus$2.class
 /UpdateBus$3.class
-/.classpath
-/.gitignore
-/.project
-/mysql-connector-j-8.0.31.jar
+/UpdateTripOffering$2.class
+/MainMenu$3$1.class

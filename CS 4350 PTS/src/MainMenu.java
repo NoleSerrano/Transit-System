@@ -445,12 +445,13 @@ public class MainMenu extends JFrame {
 		System.out.println("======= " + dataTitle + " =======");
 		String[] lcv = largestColumnValues(data, attributes);
 		for (int i = 0; i < attributes.length; i++) { // attributes row
-			System.out.print(appendSpaces(attributes[i], lcv[i]) + " ");
+			System.out.print("\033[4;2m" + appendSpaces(attributes[i], lcv[i]) + " | "); // 033.. for underlining
 		}
+		System.out.print("\033[0m"); // stops underlining
 		System.out.println();
 		for (int i = 0; i < data.length; i++) { // data matrix
 			for (int j = 0; j < data[0].length; j++) {
-				System.out.print(appendSpaces(nullToEmpty(data[i][j]), lcv[j]) + " ");
+				System.out.print(appendSpaces(nullToEmpty(data[i][j]), lcv[j]) + " | ");
 			}
 			System.out.println();
 		}

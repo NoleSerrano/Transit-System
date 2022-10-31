@@ -1,7 +1,7 @@
 # Transit-System
 Transit System with GUI and database connectivity.
 
-## Specifications
+## Design Specifications
 Use the following tables to design and implement the Transit System using any
 database product and JDBC.
 

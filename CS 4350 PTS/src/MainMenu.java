@@ -70,6 +70,13 @@ public class MainMenu extends JFrame {
 		contentPane.setLayout(null);
 
 		setLocationRelativeTo(null); // centers frame to the screen
+		
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(30, 121, 590, 270);
+				contentPane.add(scrollPane);
+				
+						table = new JTable();
+						scrollPane.setViewportView(table);
 
 		JLabel titleLabel = new JLabel("Transit System");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -214,6 +221,7 @@ public class MainMenu extends JFrame {
 				String[][] data = dc.getDrivers();
 				String[] attributes = { "Driver ID", "Driver Name", "Telephone Number" };
 				displayTable2(data, attributes, "Drivers");
+				displayJTable(data, attributes, scrollPane);
 			}
 		});
 		displayDr.setBackground(Color.WHITE);
@@ -378,13 +386,6 @@ public class MainMenu extends JFrame {
 		btnNewButton.setBounds(430, 402, 190, 32);
 		contentPane.add(btnNewButton);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 121, 590, 270);
-		contentPane.add(scrollPane);
-
-		table = new JTable();
-		scrollPane.setViewportView(table);
-
 	}
 
 	private static void createConnection() throws Exception {
@@ -432,9 +433,9 @@ public class MainMenu extends JFrame {
 		table.setRowSelectionAllowed(false);
 		table.setShowGrid(false);
 		table.setRowSelectionAllowed(false);
-		table.setShowGrid(false);
-		table.setTableHeader(null); // removes column header
-		scrollPane.setColumnHeader(null); // removes column header
+		table.setShowGrid(true);
+//		table.setTableHeader(null); // removes column header
+//		scrollPane.setColumnHeader(null); // removes column header
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 //		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 //		table.getColumnModel().getColumn(1).setPreferredWidth(200);

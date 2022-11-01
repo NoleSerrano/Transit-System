@@ -31,6 +31,8 @@ Test your program using several test data for the above transactions.
 Please submit a hard copy of your program and a printout of all test data and its output in a large envelope. 
 
 ## Graphical User Interfaces
+### Create Connection
+![image](https://user-images.githubusercontent.com/43283288/199344960-54046e0d-d1c8-4607-a807-24f590d8a14f.png)
 ### Main Menu GUIs
 ![image](https://user-images.githubusercontent.com/43283288/199193521-8254525c-fd66-4e52-aef3-5503f8029ed0.png)
 ![image](https://user-images.githubusercontent.com/43283288/199194393-f7374917-7a3b-49bb-bbfb-ab7e3e97dc52.png)

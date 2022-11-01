@@ -30,3 +30,9 @@ The system should deal with at least the following transactions:
 Test your program using several test data for the above transactions.
 Please submit a hard copy of your program and a printout of all test data and its output in a large envelope. 
 
+## GUIs
+![image](https://user-images.githubusercontent.com/43283288/199193521-8254525c-fd66-4e52-aef3-5503f8029ed0.png)
+![image](https://user-images.githubusercontent.com/43283288/199193642-c2e71f14-9c0f-455f-acf6-1bffee0a0754.png)
+![image](https://user-images.githubusercontent.com/43283288/199193690-374ea174-a22b-4dba-8f7e-262c522aac0e.png)
+
+

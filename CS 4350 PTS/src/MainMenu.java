@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
@@ -404,26 +405,8 @@ public class MainMenu extends JFrame {
 		}
 	}
 
-	private static void printData(String[][] data, String dataTitle) { // testing
-		System.out.println("======= " + dataTitle + " =======");
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[0].length; j++) {
-				System.out.print(nullToEmpty(data[i][j]) + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
 	private static String nullToEmpty(String s) {
 		if (s == null) {
-			return "";
-		}
-		return s;
-	}
-
-	private String stringNullToEmpty(String s) { // should only be used for data types ints (going to need for bus year)
-		if (s == "null") {
 			return "";
 		}
 		return s;
@@ -435,11 +418,7 @@ public class MainMenu extends JFrame {
 		table.setShowGrid(false);
 		table.setRowSelectionAllowed(false);
 		table.setShowGrid(true);
-//		table.setTableHeader(null); // removes column header
-//		scrollPane.setColumnHeader(null); // removes column header
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-//		table.getColumnModel().getColumn(0).setPreferredWidth(30);
-//		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.setDefaultEditor(Object.class, null); // makes cells uneditable
 		table.setFillsViewportHeight(false); // fills in empty rows if set to true
 		scrollPane.setViewportView(table);

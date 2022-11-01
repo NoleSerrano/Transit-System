@@ -96,7 +96,7 @@ public class BusController {
 			while (rs.next()) {
 				buses[i][0] = String.valueOf(rs.getInt("BusID"));
 				buses[i][1] = rs.getString("Model");
-				buses[i][2] = String.valueOf(rs.getObject("Year"));
+				buses[i][2] = nullToEmpty(rs.getObject("Year"));
 				i++;
 			}
 			return buses;
@@ -105,6 +105,12 @@ public class BusController {
 		}
 		return null;
 	}
-	
-	
+
+	private static String nullToEmpty(Object o) {
+		if (o == null) {
+			return "";
+		}
+		return o.toString();
+	}
+
 }

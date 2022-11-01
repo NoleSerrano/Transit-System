@@ -61,7 +61,7 @@ public class MainMenu extends JFrame {
 		createConnection();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 666, 484);
+		setBounds(100, 100, 666, 490);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -72,7 +72,7 @@ public class MainMenu extends JFrame {
 		setLocationRelativeTo(null); // centers frame to the screen
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 121, 590, 270);
+		scrollPane.setBounds(30, 121, 590, 300);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -387,17 +387,6 @@ public class MainMenu extends JFrame {
 		busButton.setBounds(430, 80, 190, 30);
 		contentPane.add(busButton);
 
-		JButton btnNewButton = new JButton("Swap Panels");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBackground(Color.DARK_GRAY);
-		btnNewButton.setBounds(430, 402, 190, 32);
-		contentPane.add(btnNewButton);
-
 	}
 
 	private static void createConnection() throws Exception {
@@ -482,7 +471,7 @@ public class MainMenu extends JFrame {
 			String largestValue = attributes[i];
 			for (int j = 0; j < data.length; j++) { // cols, compare data values
 				String dataValue = data[j][i];
-				if (dataValue.length() > largestValue.length()) {
+				if (dataValue != null && dataValue.length() > largestValue.length()) {
 					largestValue = dataValue;
 				}
 			}

@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS `actualtripstopinfo` (
   `NumberOfPassengersOut` int(11) DEFAULT NULL,
   PRIMARY KEY (`TripNumber`,`Date`,`ScheduledStartTime`,`StopNumber`),
   KEY `FK_actualtripstopinfo_stop` (`StopNumber`),
-  KEY `FK_actualtripstopinfo_tripoffering_2` (`ScheduledArrivalTime`),
   CONSTRAINT `FK_actualtripstopinfo_stop` FOREIGN KEY (`StopNumber`) REFERENCES `stop` (`StopNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table pts.actualtripstopinfo: ~0 rows (approximately)
 /*!40000 ALTER TABLE `actualtripstopinfo` DISABLE KEYS */;
 INSERT INTO `actualtripstopinfo` (`TripNumber`, `Date`, `ScheduledStartTime`, `StopNumber`, `ScheduledArrivalTime`, `ActualStartTime`, `ActualArrivalTime`, `NumberOfPassengersIn`, `NumberOfPassengersOut`) VALUES
-	(1, '2000-06-09', '01:00:00', 7, '02:00:00', '01:02:00', '01:29:00', 13, 13);
+	(1, '2000-06-09', '01:00:00', 7, '02:00:00', '01:02:00', '01:29:00', 13, 13),
+	(1, '2000-06-09', '03:00:00', 7, '04:00:00', '03:02:00', '03:15:00', 13, 2);
 /*!40000 ALTER TABLE `actualtripstopinfo` ENABLE KEYS */;
 
 -- Dumping structure for table pts.bus
@@ -138,7 +138,6 @@ CREATE TABLE IF NOT EXISTS `tripoffering` (
   `DriverID` int(11) DEFAULT NULL,
   `BusID` int(11) DEFAULT NULL,
   PRIMARY KEY (`TripNumber`,`Date`,`ScheduledStartTime`),
-  KEY `ScheduledArrivalTime` (`ScheduledArrivalTime`) USING BTREE,
   KEY `FK_tripoffering_driver` (`DriverID`),
   KEY `FK_tripoffering_bus` (`BusID`),
   CONSTRAINT `FK_tripoffering_bus` FOREIGN KEY (`BusID`) REFERENCES `bus` (`BusID`) ON DELETE NO ACTION ON UPDATE NO ACTION,

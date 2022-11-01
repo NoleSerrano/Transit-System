@@ -116,9 +116,8 @@ public class UpdateTripOffering extends JDialog {
 					int driverID = Integer.valueOf(driverIDTextField.getText());
 					int busID = Integer.valueOf(busIDTextField.getText());
 
-					toc.updateTripOffering(tripNumber, date, scheduledStartTime, scheduledArrivalTime, driverID,
-							busID);
-						message.showMessageDialog(contentPanel, "Trip offering updated");
+					toc.updateTripOffering(tripNumber, date, scheduledStartTime, scheduledArrivalTime, driverID, busID);
+					message.showMessageDialog(contentPanel, "Trip offering updated");
 				} catch (Exception e2) {
 					System.out.println(e2);
 					message.showMessageDialog(contentPanel, "Invalid input");
@@ -164,6 +163,7 @@ public class UpdateTripOffering extends JDialog {
 		busIDLabel.setBounds(170, 140, 150, 17);
 		contentPanel.add(busIDLabel);
 
+		updateButton.setEnabled(false);
 		scheduledArrivalTimeTextField.setEnabled(false);
 		scheduledArrivalTimeLabel.setForeground(Color.LIGHT_GRAY);
 

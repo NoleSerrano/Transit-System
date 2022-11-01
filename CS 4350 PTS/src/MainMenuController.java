@@ -29,20 +29,21 @@ public class MainMenuController {
 		this.con = con;
 	}
 
-	public int recordData(int tripNumber, Date date, Time scheduledStartTime, int stopNumber, Time actualStartTime,
-			Time actualArrivalTime, int numberOfPassengersIn, int numberOfPassengersOut) {
+	public int recordData(int tripNumber, Date date, Time scheduledStartTime, int stopNumber, Time scheduledArrivalTime,
+			Time actualStartTime, Time actualArrivalTime, int numberOfPassengersIn, int numberOfPassengersOut) {
 		try {
 			PreparedStatement stmt = con.prepareStatement(
-					"INSERT INTO ActualTripStopInfo (TripNumber, Date, ScheduledStartTime, StopNumber, ActualStartTime, ActualArrivalTime, NumberOfPassengersIn, NumberOfPassengersOut"
-							+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO ActualTripStopInfo (TripNumber, Date, ScheduledStartTime, StopNumber, ScheduledArrivalTime, ActualStartTime, ActualArrivalTime, NumberOfPassengersIn, NumberOfPassengersOut"
+							+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			stmt.setInt(1, tripNumber);
 			stmt.setDate(2, date);
 			stmt.setTime(3, scheduledStartTime);
 			stmt.setInt(4, stopNumber);
-			stmt.setTime(5, actualStartTime);
-			stmt.setTime(6, actualArrivalTime);
-			stmt.setInt(7, numberOfPassengersIn);
-			stmt.setInt(8, numberOfPassengersOut);
+			stmt.setTime(5, scheduledArrivalTime);
+			stmt.setTime(6, actualStartTime);
+			stmt.setTime(7, actualArrivalTime);
+			stmt.setInt(8, numberOfPassengersIn);
+			stmt.setInt(9, numberOfPassengersOut);
 			return stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);

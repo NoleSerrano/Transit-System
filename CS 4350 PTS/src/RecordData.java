@@ -34,6 +34,9 @@ public class RecordData extends JDialog {
 	private JLabel numberOfPassengersOutLabel;
 	private JTextField numberOfPassengersOutTextField;
 
+	private boolean isSelected = false;
+	private String[] tripOffering;
+
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +56,7 @@ public class RecordData extends JDialog {
 	public RecordData(Connection con) {
 
 		MainMenuController mmc = new MainMenuController(con);
+		TripOfferingController toc = new TripOfferingController(con);
 		JOptionPane message = new JOptionPane(null);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 
@@ -113,12 +117,13 @@ public class RecordData extends JDialog {
 					Date date = Date.valueOf(dateTextField.getText());
 					Time scheduledStartTime = formatTime(scheduledStartTimeTextField.getText());
 					int stopNumber = Integer.valueOf(stopNumberTextField.getText());
+					Time scheduledArrivalTime = Time.valueOf(tripOffering[0]);
 					Time actualStartTime = formatTime(actualStartTimeTextField.getText());
 					Time actualArrivalTime = formatTime(actualArrivalTimeTextField.getText());
 					int numberOfPassengersIn = Integer.valueOf(numberOfPassengersInTextField.getText());
 					int numberOfPassengersOut = Integer.valueOf(numberOfPassengersOutTextField.getText());
-					mmc.recordData(tripNumber, date, scheduledStartTime, stopNumber, actualStartTime, actualArrivalTime,
-							numberOfPassengersIn, numberOfPassengersOut);
+					mmc.recordData(tripNumber, date, scheduledStartTime, stopNumber, scheduledArrivalTime,
+							actualStartTime, actualArrivalTime, numberOfPassengersIn, numberOfPassengersOut);
 					message.showMessageDialog(contentPanel, "Data recorded");
 				} catch (Exception e2) {
 					System.out.println(e2);
@@ -186,8 +191,108 @@ public class RecordData extends JDialog {
 		numberOfPassengersOutTextField.setColumns(10);
 		numberOfPassengersOutTextField.setBounds(170, 210, 150, 25);
 		contentPanel.add(numberOfPassengersOutTextField);
-		
+
+		recordButton.setEnabled(false);
+		actualStartTimeTextField.setEnabled(false);
+		actualStartTimeLabel.setForeground(Color.LIGHT_GRAY);
+		actualArrivalTimeTextField.setEnabled(false);
+		actualArrivalTimeLabel.setForeground(Color.LIGHT_GRAY);
+		numberOfPassengersInTextField.setEnabled(false);
+		numberOfPassengersInLabel.setForeground(Color.LIGHT_GRAY);
+		numberOfPassengersOutTextField.setEnabled(false);
+		numberOfPassengersOutLabel.setForeground(Color.LIGHT_GRAY);
+
 		JButton selectButton = new JButton("Select");
+		selectButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!isSelected) { // item selected
+					try {
+						int tripNumber = Integer.valueOf(tripNumberTextField.getText());
+						Date date = Date.valueOf(dateTextField.getText());
+						Time scheduledStartTime = formatTime(scheduledStartTimeTextField.getText());
+						tripOffering = toc.getTripOffering(tripNumber, date, scheduledStartTime);
+						if (tripOffering == null) {
+							message.showMessageDialog(contentPanel, "No trip offering found");
+						} else { // item found
+							isSelected = true;
+							recordButton.setEnabled(true);
+
+							// enable
+							actualStartTimeTextField.setEnabled(true);
+							actualStartTimeLabel.setForeground(Color.BLACK);
+
+							actualArrivalTimeTextField.setEnabled(true);
+							actualArrivalTimeLabel.setForeground(Color.BLACK);
+
+							numberOfPassengersInTextField.setEnabled(true);
+							numberOfPassengersInLabel.setForeground(Color.BLACK);
+
+							numberOfPassengersOutTextField.setEnabled(true);
+							numberOfPassengersOutLabel.setForeground(Color.BLACK);
+
+							// disable
+							tripNumberTextField.setEnabled(false);
+							tripNumberLabel.setForeground(Color.LIGHT_GRAY);
+
+							dateTextField.setEnabled(false);
+							dateLabel.setForeground(Color.LIGHT_GRAY);
+
+							scheduledStartTimeTextField.setEnabled(false);
+							scheduledStartTimeLabel.setForeground(Color.LIGHT_GRAY);
+
+							stopNumberTextField.setEnabled(false);
+							stopNumberLabel.setForeground(Color.LIGHT_GRAY);
+
+							selectButton.setText("Unselect");
+
+						}
+					} catch (Exception e2) {
+						System.out.println(e2);
+						message.showMessageDialog(contentPanel, "Invalid input");
+					}
+				} else { // item not selected
+					isSelected = false;
+					recordButton.setEnabled(false);
+
+					// disable
+					actualStartTimeTextField.setEnabled(false);
+					actualStartTimeTextField.setText("");
+					actualStartTimeLabel.setForeground(Color.LIGHT_GRAY);
+
+					actualArrivalTimeTextField.setEnabled(false);
+					actualArrivalTimeTextField.setText("");
+					actualArrivalTimeLabel.setForeground(Color.LIGHT_GRAY);
+
+					numberOfPassengersInTextField.setEnabled(false);
+					numberOfPassengersInTextField.setText("");
+					numberOfPassengersInLabel.setForeground(Color.LIGHT_GRAY);
+
+					numberOfPassengersOutTextField.setEnabled(false);
+					numberOfPassengersOutTextField.setText("");
+					numberOfPassengersOutLabel.setForeground(Color.LIGHT_GRAY);
+
+					// enable
+					tripNumberTextField.setEnabled(true);
+					tripNumberTextField.setText("");
+					tripNumberLabel.setForeground(Color.BLACK);
+
+					dateTextField.setEnabled(true);
+					dateTextField.setText("");
+					dateLabel.setForeground(Color.BLACK);
+
+					scheduledStartTimeTextField.setEnabled(true);
+					scheduledStartTimeTextField.setText("");
+					scheduledStartTimeLabel.setForeground(Color.BLACK);
+
+					stopNumberTextField.setEnabled(true);
+					stopNumberTextField.setText("");
+					stopNumberLabel.setForeground(Color.BLACK);
+
+					selectButton.setText("Select");
+
+				}
+			}
+		});
 		selectButton.setForeground(Color.WHITE);
 		selectButton.setFocusPainted(false);
 		selectButton.setBackground(SystemColor.textInactiveText);

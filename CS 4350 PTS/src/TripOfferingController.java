@@ -79,7 +79,7 @@ public class TripOfferingController {
 		}
 		return null;
 	}
-
+	
 	public int updateTripOffering(int tripNumber, Date date, Time scheduledStartTime, Time scheduledArrivalTime,
 			int driverID, int busID) {
 		try {

@@ -120,7 +120,6 @@ public class RecordData extends JDialog {
 					mmc.recordData(tripNumber, date, scheduledStartTime, stopNumber, actualStartTime, actualArrivalTime,
 							numberOfPassengersIn, numberOfPassengersOut);
 					message.showMessageDialog(contentPanel, "Data recorded");
-					dispose();
 				} catch (Exception e2) {
 					System.out.println(e2);
 					message.showMessageDialog(contentPanel, "Invalid input");
@@ -129,7 +128,7 @@ public class RecordData extends JDialog {
 		});
 		recordButton.setBackground(SystemColor.textInactiveText);
 		recordButton.setForeground(Color.WHITE);
-		recordButton.setBounds(90, 250, 150, 30);
+		recordButton.setBounds(170, 250, 150, 30);
 		recordButton.setFocusPainted(false);
 		contentPanel.add(recordButton);
 
@@ -187,6 +186,13 @@ public class RecordData extends JDialog {
 		numberOfPassengersOutTextField.setColumns(10);
 		numberOfPassengersOutTextField.setBounds(170, 210, 150, 25);
 		contentPanel.add(numberOfPassengersOutTextField);
+		
+		JButton selectButton = new JButton("Select");
+		selectButton.setForeground(Color.WHITE);
+		selectButton.setFocusPainted(false);
+		selectButton.setBackground(SystemColor.textInactiveText);
+		selectButton.setBounds(10, 250, 150, 30);
+		contentPanel.add(selectButton);
 
 	}
 

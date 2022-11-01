@@ -33,7 +33,7 @@ public class MainMenuController {
 			Time actualArrivalTime, int numberOfPassengersIn, int numberOfPassengersOut) {
 		try {
 			PreparedStatement stmt = con.prepareStatement(
-					"INSERT INTO ActualTripStopInfo (TripNumber, Date, ScheduledStartTime, ScheduledArrivalTime, StopNumber, ActualStartTime, ActualArrivalTime, NumberOfPassengersIn, NumberOfPassengersOut"
+					"INSERT INTO ActualTripStopInfo (TripNumber, Date, ScheduledStartTime, StopNumber, ActualStartTime, ActualArrivalTime, NumberOfPassengersIn, NumberOfPassengersOut"
 							+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 			stmt.setInt(1, tripNumber);
 			stmt.setDate(2, date);

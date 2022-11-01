@@ -99,10 +99,12 @@ public class CreateConnection extends JDialog {
 //					String username = "root";
 //					String password = "DBpassword1";
 					String url = urlTextField.getText();
-					if (!url.substring(0, 8).equals("mysql://")) {
+
+					if ((url.length() >= 8 && !url.substring(0, 8).equals("mysql://")) || url.length() < 8) {
 						url = "mysql://" + url;
 					}
 					url = "jdbc:" + url;
+					System.out.println(url);
 					String username = usernameTextField.getText();
 					String password = String.valueOf(passwordTextField.getPassword());
 					Class.forName(driver);

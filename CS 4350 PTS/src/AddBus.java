@@ -91,6 +91,8 @@ public class AddBus extends JDialog {
 					message.showMessageDialog(contentPanel, "Invalid year");
 				} else {
 					message.showMessageDialog(contentPanel, "Bus added");
+					modelTextField.setText("");
+					yearTextField.setText("");
 				}
 			}
 		});

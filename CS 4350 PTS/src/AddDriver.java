@@ -50,7 +50,7 @@ public class AddDriver extends JDialog {
 		contentPanel.setBackground(new Color(246, 249, 250));
 		setResizable(false);
 		contentPanel.setLayout(null);
-		
+
 		setLocationRelativeTo(null); // center
 
 		JLabel titleLabel = new JLabel("Add Driver");
@@ -88,6 +88,8 @@ public class AddDriver extends JDialog {
 				String telephoneNumber = emptyToNull(telephoneNumberTextField.getText());
 				dc.addDriver(driverName, telephoneNumber);
 				message.showMessageDialog(contentPanel, "Driver added");
+				driverNameTextField.setText("");
+				telephoneNumberTextField.setText("");
 			}
 		});
 		addButton.setBackground(SystemColor.textInactiveText);

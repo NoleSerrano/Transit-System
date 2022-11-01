@@ -127,7 +127,7 @@ public class AddTripOffering extends JDialog {
 		});
 		addButton.setBackground(SystemColor.textInactiveText);
 		addButton.setForeground(Color.WHITE);
-		addButton.setBounds(90, 200, 150, 30);
+		addButton.setBounds(10, 200, 150, 30);
 		addButton.setFocusPainted(false);
 		contentPanel.add(addButton);
 
@@ -163,6 +163,23 @@ public class AddTripOffering extends JDialog {
 		busIDLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		busIDLabel.setBounds(170, 140, 150, 17);
 		contentPanel.add(busIDLabel);
+
+		JButton clearButton = new JButton("Clear");
+		clearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tripNumberTextField.setText("");
+				dateTextField.setText("");
+				scheduledStartTimeTextField.setText("");
+				scheduledArrivalTimeTextField.setText("");
+				driverIDTextField.setText("");
+				busIDTextField.setText("");
+			}
+		});
+		clearButton.setForeground(Color.WHITE);
+		clearButton.setFocusPainted(false);
+		clearButton.setBackground(SystemColor.textInactiveText);
+		clearButton.setBounds(170, 200, 150, 30);
+		contentPanel.add(clearButton);
 	}
 
 	private Time formatTime(String s) {

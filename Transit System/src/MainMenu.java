@@ -178,7 +178,7 @@ public class MainMenu extends JFrame {
 
 		JPopupMenu driverPM = new JPopupMenu();
 		driverPM.setBackground(Color.WHITE);
-		driverPM.setPopupSize(new Dimension(190, 90));
+		driverPM.setPopupSize(new Dimension(140, 90));
 		driverPM.setLabel("");
 
 		JMenuItem addDr = new JMenuItem("Add");
@@ -241,13 +241,13 @@ public class MainMenu extends JFrame {
 		});
 		driverButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		driverButton.setBackground(SystemColor.controlHighlight);
-		driverButton.setBounds(230, 80, 190, 30);
+		driverButton.setBounds(330, 80, 140, 30);
 		driverButton.setFocusPainted(false);
 		contentPane.add(driverButton);
 
 		JPopupMenu tripOfferingPM = new JPopupMenu();
 		tripOfferingPM.setBackground(Color.WHITE);
-		tripOfferingPM.setPopupSize(new Dimension(190, 90));
+		tripOfferingPM.setPopupSize(new Dimension(140, 90));
 
 		JMenuItem addTO = new JMenuItem("Add");
 		addTO.addActionListener(new ActionListener() {
@@ -312,12 +312,12 @@ public class MainMenu extends JFrame {
 		tripOfferingButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tripOfferingButton.setFocusPainted(false);
 		tripOfferingButton.setBackground(SystemColor.controlHighlight);
-		tripOfferingButton.setBounds(30, 80, 190, 30);
+		tripOfferingButton.setBounds(180, 80, 140, 30);
 		contentPane.add(tripOfferingButton);
 
 		JPopupMenu busPM = new JPopupMenu();
 		busPM.setBackground(Color.WHITE);
-		busPM.setPopupSize(new Dimension(190, 90));
+		busPM.setPopupSize(new Dimension(140, 90));
 
 		JMenuItem addBu = new JMenuItem("Add");
 		addBu.addActionListener(new ActionListener() {
@@ -382,8 +382,26 @@ public class MainMenu extends JFrame {
 		busButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		busButton.setFocusPainted(false);
 		busButton.setBackground(SystemColor.controlHighlight);
-		busButton.setBounds(430, 80, 190, 30);
+		busButton.setBounds(480, 80, 140, 30);
 		contentPane.add(busButton);
+
+		JButton displayData = new JButton("Display Data");
+		displayData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainMenuController mmc = new MainMenuController(con);
+				String[][] data = mmc.getData(); // actual trip stop info data
+				String[] attributes = { "Trip Number", "Date", "Scheduled Start Time", "Stop Number",
+						"Scheduled Arrival Time", "Actual Start Time", "Actual End Time", "Number of Passengers In",
+						"Number of Passengers Out" };
+				displayTable2(data, attributes);
+				displayJTable(data, attributes, scrollPane);
+			}
+		});
+		displayData.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		displayData.setFocusPainted(false);
+		displayData.setBackground(SystemColor.controlHighlight);
+		displayData.setBounds(30, 80, 140, 30);
+		contentPane.add(displayData);
 
 	}
 
@@ -509,7 +527,7 @@ public class MainMenu extends JFrame {
 
 		JPopupMenu driverPM = new JPopupMenu();
 		driverPM.setBackground(Color.WHITE);
-		driverPM.setPopupSize(new Dimension(190, 90));
+		driverPM.setPopupSize(new Dimension(140, 90));
 		driverPM.setLabel("");
 
 		JMenuItem addDr = new JMenuItem("Add");
@@ -578,7 +596,7 @@ public class MainMenu extends JFrame {
 
 		JPopupMenu tripOfferingPM = new JPopupMenu();
 		tripOfferingPM.setBackground(Color.WHITE);
-		tripOfferingPM.setPopupSize(new Dimension(190, 90));
+		tripOfferingPM.setPopupSize(new Dimension(140, 90));
 
 		JMenuItem addTO = new JMenuItem("Add");
 		addTO.addActionListener(new ActionListener() {
@@ -648,7 +666,7 @@ public class MainMenu extends JFrame {
 
 		JPopupMenu busPM = new JPopupMenu();
 		busPM.setBackground(Color.WHITE);
-		busPM.setPopupSize(new Dimension(190, 90));
+		busPM.setPopupSize(new Dimension(140, 90));
 
 		JMenuItem addBu = new JMenuItem("Add");
 		addBu.addActionListener(new ActionListener() {

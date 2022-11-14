@@ -49,6 +49,41 @@ public class MainMenuController {
 		}
 		return 0;
 	}
+	
+	public String[][] getData() {
+		try {
+			PreparedStatement stmt = con.prepareStatement(
+					"SELECT * FROM ActualTripStopInfo",
+					ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs = stmt.executeQuery();
+
+			rs.last(); // cursor at end
+			int rows = rs.getRow();
+			int cols = 9;
+			rs.beforeFirst(); // return cursor
+			
+			String[][] data = new String[rows][cols];
+			
+			int i = 0;
+			
+			while (rs.next()) {
+				data[i][0] = String.valueOf(rs.getInt("TripNumber"));
+				data[i][1] = String.valueOf(rs.getDate("Date"));
+				data[i][2] = String.valueOf(rs.getTime("ScheduledStartTime"));
+				data[i][3] = String.valueOf(rs.getInt("StopNumber"));
+				data[i][4] = String.valueOf(rs.getTime("ScheduledArrivalTime"));
+				data[i][5] = String.valueOf(rs.getTime("ActualStartTime"));
+				data[i][6] = String.valueOf(rs.getTime("ActualArrivalTime"));
+				data[i][7] = String.valueOf(rs.getInt("NumberOfPassengersIn"));
+				data[i][8] = String.valueOf(rs.getInt("NumberOfPassengersOut"));
+				i++;
+			}
+			return data;
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	public String[][] getWeeklySchedule(int driverID, Date date) {
 		try {

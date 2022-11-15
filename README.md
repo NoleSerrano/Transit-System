@@ -34,7 +34,7 @@ Please submit a hard copy of your program and a printout of all test data and it
 ### Create Connection
 ![image](https://user-images.githubusercontent.com/43283288/199344960-54046e0d-d1c8-4607-a807-24f590d8a14f.png)
 ### Main Menu GUIs
-![image](https://user-images.githubusercontent.com/43283288/199193521-8254525c-fd66-4e52-aef3-5503f8029ed0.png)
+![image](https://user-images.githubusercontent.com/43283288/201815236-de190f09-86db-4a8b-b892-bdd6f9bdfe00.png)
 ![image](https://user-images.githubusercontent.com/43283288/199194393-f7374917-7a3b-49bb-bbfb-ab7e3e97dc52.png)
 ![image](https://user-images.githubusercontent.com/43283288/199194417-acae7d04-adcd-43ce-ba69-6f3779b34c9b.png)
 ![image](https://user-images.githubusercontent.com/43283288/199194434-0bedf0cf-f117-4eb1-8d97-8f4bc9cd5145.png)
